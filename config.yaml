@@ -1,0 +1,7 @@
+llm:
+  APPID: 508af837
+  APISecret: ZTNkZjBkMmQwNzY0ZDVlNjkxZjBhNjY4
+  APIKey: 3df6675e31e2480676984973fb4965db
+  URL: ws(s)://spark-api.xf-yun.com/v3.5/chat
+  Domain: generalV3.5
+
