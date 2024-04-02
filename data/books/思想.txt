@@ -1,0 +1,15 @@
+title:潜规则    rating:8.3    writer:None    translator:None    pub_info: 云南人民出版社 / 2001-1 / 16.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:单向度的人    rating:8.5    writer:None    translator:None    pub_info: 上海译文出版社 / 2006-4 / 20.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:纯粹理性批判    rating:9.0    writer:None    translator:None    pub_info: 人民出版社 / 2004-10 / 46.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:公正    rating:9.1    writer:None    translator:None    pub_info: 中信出版社 / 2012-11-30 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:有限与无限的游戏    rating:8.3    writer:None    translator:None    pub_info: 电子工业出版社 / 2013-10 / 35.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:我是谁，或什么    rating:9.3    writer:None    translator:None    pub_info: 理想国 | 上海三联书店 / 2020-7 / 108.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:加缪手记    rating:9.1    writer:None    translator:None    pub_info: 浙江大学出版社·启真馆 / 2016-7 / 35.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:山月记    rating:8.4    writer:None    translator:None    pub_info: 三秦出版社 / 2019-3 / 45.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:20世纪思想史    rating:9.3    writer:None    translator:None    pub_info: 译林出版社 / 2019-10 / 248.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:独裁者手册    rating:8.8    writer:None    translator:None    pub_info: 江苏文艺出版社 / 2014-5 / CNY 42.00    ISBN:None    series:None    tags:N    o    n    e    
+title:遇见一家书店    rating:0.0    writer:None    translator:None    pub_info: 北京联合出版公司 / 2021-1 / 45    ISBN:None    series:None    tags:N    o    n    e    
+title:进化心理学    rating:8.8    writer:None    translator:None    pub_info: 华东师范大学出版社 / 2007-6 / 49.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:存在与时间    rating:8.7    writer:None    translator:None    pub_info: 生活·读书·新知三联书店 / 2006-4 / 28.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:逻辑哲学论    rating:9.2    writer:None    translator:None    pub_info: 商务印书馆 / 1996-12 / 13.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:传习录    rating:9.3    writer:None    translator:None    pub_info: 中州古籍出版社 / 2008-1 / 32.00元    ISBN:None    series:None    tags:N    o    n    e    

@@ -1,0 +1,30 @@
+title:量化数据分析    rating:9.3    writer:None    translator:None    pub_info: 社会科学文献出版社 / 2012-7 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:算法之美    rating:7.5    writer:None    translator:None    pub_info: 中信出版集团 / 2018-5-18 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:逻辑的引擎    rating:8.5    writer:None    translator:None    pub_info: 湖南科学技术出版社 / 2005-5 / 20.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:博弈论基础    rating:8.4    writer:None    translator:None    pub_info: 北京-中国社会科学出版社 / 1999 / 25.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:计算的本质    rating:8.6    writer:None    translator:None    pub_info: 人民邮电出版社 / 2014-11 / 69.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:更高更妙的高中数学思想与方法    rating:9.1    writer:None    translator:None    pub_info: 浙江大学出版社 / 2011-7 / 32.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:物理世界的数学奇迹    rating:8.8    writer:None    translator:None    pub_info: 中信出版·鹦鹉螺 / 2020-7 / 59.00    ISBN:None    series:None    tags:N    o    n    e    
+title:素数的阴谋    rating:8.8    writer:None    translator:None    pub_info: 中信出版社 / 2020-3 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:数学、科学和认识论    rating:9.4    writer:None    translator:None    pub_info: 商务印书馆 / 2010-12 / 32.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:商务与经济统计    rating:9.2    writer:None    translator:None    pub_info: 机械工业出版社 / 2012-4-1 / 108.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:博弈论与经济行为    rating:8.5    writer:None    translator:None    pub_info: 生活·读书·新知三联书店 / 2004-12 / 50.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:数学的发现    rating:9.2    writer:None    translator:None    pub_info: 科学出版社 / 2006 / 40.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:陶哲轩实分析(第3版)    rating:9.3    writer:None    translator:None    pub_info: 人民邮电出版社 / 2018-5 / 99.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:自然哲学之数学原理    rating:9.1    writer:None    translator:None    pub_info: 北京大学出版社 / 2006-1 / 39.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:无言的宇宙    rating:8.2    writer:None    translator:None    pub_info: 北京联合出版公司 / 2015-5 / 49.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:简明微积分    rating:9.3    writer:None    translator:None    pub_info: 高等教育出版社 / 2006-4 / 37.90元    ISBN:None    series:None    tags:N    o    n    e    
+title:心理统计学（第3版）    rating:9.1    writer:None    translator:None    pub_info: 华东师范大学出版社 / 2011-2 / 98.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:最优化导论    rating:9.3    writer:None    translator:None    pub_info: 电子工业出版社 / 2015-10 / 89.00    ISBN:None    series:None    tags:N    o    n    e    
+title:数学史（上下）    rating:9.1    writer:None    translator:None    pub_info: 中央编译出版社 / 2012-5 / 168.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:爱与数学    rating:8.3    writer:None    translator:None    pub_info: 中信出版社 / 2016-3 / 49.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:数学大师：从芝诺到庞加莱    rating:8.0    writer:None    translator:None    pub_info: 上海科技教育出版社 / 2018-8 / 98    ISBN:None    series:None    tags:N    o    n    e    
+title:汉声数学图画书    rating:9.3    writer:[美] 富兰克林·布朗利/明德尔•西托默    translator:None    pub_info: 贵州人民出版社 / 2013-11-8 / 1080    ISBN: 9787223356800    series:None    tags:数学    儿童教育    数学教育    育儿    绘本    童书    教育    汉声    
+title:The Art of Statistics    rating:9.3    writer:None    translator:None    pub_info: Pelican / 2019-3 / USD 21.48    ISBN:None    series:None    tags:N    o    n    e    
+title:高等数学·上册    rating:8.0    writer:None    translator:None    pub_info: 高等教育出版社 / 2014-7-1 / CNY 39.80    ISBN:None    series:None    tags:N    o    n    e    
+title:计算机程序设计艺术（第1卷）    rating:9.4    writer:None    translator:None    pub_info: 清华大学出版社 / 2002-9 / 80.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:演化与博弈论    rating:8.8    writer:None    translator:None    pub_info: 复旦大学出版社 / 2008-10 / 35.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:经济分析基础    rating:9.6    writer:None    translator:None    pub_info: 东北财大 / 2006-12 / 48.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:混沌    rating:8.4    writer:None    translator:None    pub_info: 高等教育出版社 / 2004-11 / 42.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:数学分析    rating:9.0    writer:None    translator:None    pub_info: 机械工业出版社 / 2006-01-01 / 55.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:数学天书中的证明    rating:9.1    writer:None    translator:None    pub_info: 高等教育出版社 / 2009-5 / 34.00元    ISBN:None    series:None    tags:N    o    n    e    

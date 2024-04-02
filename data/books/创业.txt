@@ -1,0 +1,15 @@
+title:硅谷百年史    rating:7.8    writer:None    translator:None    pub_info: 人民邮电出版社 / 2014-4-1 / 99.00    ISBN:None    series:None    tags:N    o    n    e    
+title:平台战略    rating:7.5    writer:None    translator:None    pub_info: 中信出版社 / 2013-1 / 58.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:海底捞你学不会    rating:7.2    writer:None    translator:None    pub_info: 中信出版社 / 2011-3 / 39.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:伟大创意的诞生    rating:7.6    writer:None    translator:None    pub_info: 浙江人民出版社 / 2014-8-1 / CNY 52.90    ISBN:None    series:None    tags:N    o    n    e    
+title:稻盛和夫的实学：经营和会计    rating:8.2    writer:None    translator:None    pub_info: 译林出版社 / 2005-12 / 18.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:合伙人制度    rating:7.9    writer:None    translator:None    pub_info: 清华大学出版社 / 2017-4-1 / 68    ISBN:None    series:None    tags:N    o    n    e    
+title:最糟也最棒的书店    rating:7.5    writer:None    translator:None    pub_info: 山东人民出版社 / 2011-1 / 25.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:会赚钱的妈妈    rating:7.3    writer:None    translator:None    pub_info: 江西人民出版社 / 2018-6 / 39.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:专业服务公司的管理（经典重译版）    rating:9.2    writer:None    translator:None    pub_info: 机械工业出版社 / 2018-4-1 / 79    ISBN:None    series:None    tags:N    o    n    e    
+title:指数型组织    rating:7.6    writer:None    translator:None    pub_info: 浙江人民出版社 / 2015-8-1 / CNY 69.90    ISBN:None    series:None    tags:N    o    n    e    
+title:The Hard Thing About Hard Things    rating:8.8    writer:None    translator:None    pub_info: HarperBusiness / 2014-3-4 / USD 29.99    ISBN:None    series:None    tags:N    o    n    e    
+title:销售圣经    rating:8.0    writer:None    translator:None    pub_info: 中华工商联合出版社 / 2009-5 / 39.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:股权资产估值    rating:9.2    writer:None    translator:None    pub_info: 机械工业出版社 / 2012-7-1 / 99.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:软件随想录    rating:8.7    writer:None    translator:None    pub_info: 人民邮电出版社 / 2009 / 49.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:结网@改变世界的互联网产品经理    rating:8.0    writer:None    translator:None    pub_info: 人民邮电出版社 / 2013-5-1 / 69.00元    ISBN:None    series:None    tags:N    o    n    e    

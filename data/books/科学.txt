@@ -1,0 +1,15 @@
+title:别闹了，费曼先生    rating:8.9    writer:None    translator:None    pub_info: 生活·读书·新知三联书店 / 1997-12 / 22.00    ISBN:None    series:None    tags:N    o    n    e    
+title:how to    rating:8.5    writer:None    translator:None    pub_info: 天津科学技术出版社 / 2020-4-1 / 48    ISBN:None    series:None    tags:N    o    n    e    
+title:十万个为什么    rating:9.1    writer:None    translator:None    pub_info:少年儿童出版社 / 1962 / 30.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:人类群星闪耀时    rating:8.4    writer:None    translator:None    pub_info: 上海文艺出版社 / 2019-7 / 49.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:现实不似你所见    rating:9.2    writer:None    translator:None    pub_info: 湖南科学技术出版社 / 2017-11 / 49.00    ISBN:None    series:None    tags:N    o    n    e    
+title:编码    rating:9.3    writer:None    translator:None    pub_info: 电子工业出版社 / 2010 / 55.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:肠子的小心思    rating:8.9    writer:None    translator:None    pub_info: 江苏凤凰科学技术出版社 / 2016-1 / 38.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:恐龙的兴衰    rating:9.1    writer:None    translator:None    pub_info: 未读·探索家 天津科学技术出版社 / 2020-7 / 58.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:皮肤的秘密    rating:8.0    writer:None    translator:None    pub_info: 东方出版社 / 2019-2 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:是我把你蠢哭了吗    rating:8.8    writer:None    translator:None    pub_info: 后浪丨福建教育出版社 / 2020-10 / 42.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:科学革命的结构    rating:9.0    writer:None    translator:None    pub_info: 北京大学出版社 / 2012-11 / 29.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:事实    rating:8.0    writer:None    translator:None    pub_info: 文汇出版社 / 2019-4 / 99.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:改变心理学的40项研究    rating:9.2    writer:None    translator:None    pub_info: 人民邮电出版社 / 2010-8-1 / 28.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:费马大定理    rating:9.2    writer:None    translator:None    pub_info: 广西师范大学出版社 / 2013-1 / 39.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:数学之美    rating:8.7    writer:None    translator:None    pub_info: 人民邮电出版社 / 2012-5-1 / 45.00元    ISBN:None    series:None    tags:N    o    n    e    

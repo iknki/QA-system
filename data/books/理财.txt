@@ -1,0 +1,45 @@
+title:手把手教你读财报    rating:8.7    writer:None    translator:None    pub_info: 中国经济出版社 / 2015-1-1 / 49.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:财富自由之路    rating:8.7    writer:None    translator:None    pub_info: 电子工业出版社 / 2017-8 / 79.00    ISBN:None    series:None    tags:N    o    n    e    
+title:贫穷的本质    rating:7.6    writer:None    translator:None    pub_info: 中信出版社 / 2013-4-1 / 58.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:证券分析    rating:9.1    writer:None    translator:None    pub_info: 中国人民大学出版社 / 2013-4 / 129.90元    ISBN:None    series:None    tags:N    o    n    e    
+title:解读基金（修订版）    rating:7.9    writer:None    translator:None    pub_info: 中国经济出版社 / 2020-10 / 58.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:彼得·林奇的成功投资    rating:9.1    writer:None    translator:None    pub_info: 机械工业出版社 / 2010-4-1 / 38.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:解读基金    rating:8.3    writer:None    translator:None    pub_info: 中国经济出版社 / 2007-4 / 22.00    ISBN:None    series:None    tags:N    o    n    e    
+title:香帅金融学讲义    rating:9.2    writer:None    translator:None    pub_info: 中信出版社 / 2020-9-1 / 98.00    ISBN:None    series:None    tags:N    o    n    e    
+title:债务危机    rating:8.7    writer:None    translator:None    pub_info: 中信出版社 / 2019-3 / 98.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:价值投资实战手册    rating:8.9    writer:None    translator:None    pub_info: 中国经济出版社 / 2019-1 / 59.80    ISBN:None    series:None    tags:N    o    n    e    
+title:老年实用手册    rating:8.1    writer:None    translator:None    pub_info: 后浪丨中国友谊出版公司 / 2020-7 / 88.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:股市真规则    rating:9.0    writer:None    translator:None    pub_info: 中信出版社 / 2010-1 / 39.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:逃不开的经济周期    rating:8.5    writer:None    translator:None    pub_info: 中信出版社 / 2012-11 / 69.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:你的第一本保险指南    rating:8.5    writer:None    translator:None    pub_info: 中信出版社 / 2018-9 / 49    ISBN:None    series:None    tags:N    o    n    e    
+title:小狗钱钱    rating:9.1    writer:None    translator:None    pub_info: 四川少年儿童出版社 / 2014-3-1 / CNY 22.00    ISBN:None    series:None    tags:N    o    n    e    
+title:有效资产管理    rating:8.2    writer:None    translator:None    pub_info: 机械工业出版社 / 2013-1 / 39.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:巴比伦最富有的人    rating:7.7    writer:None    translator:None    pub_info: 南海出版公司 / 2009-8 / 20.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:赌金者    rating:8.8    writer:None    translator:None    pub_info: 机械工业出版社 / 2017-1 / 55.00    ISBN:None    series:None    tags:N    o    n    e    
+title:The Four Pillars of Investing    rating:8.8    writer:None    translator:None    pub_info: McGraw-Hill / 2002-4-26 / USD 29.95    ISBN:None    series:None    tags:N    o    n    e    
+title:The Most Important Thing    rating:8.9    writer:None    translator:None    pub_info: Columbia University Press / 2011-5-1 / USD 29.95    ISBN:None    series:None    tags:N    o    n    e    
+title:对冲基金风云录    rating:8.2    writer:None    translator:None    pub_info: 中信出版社 / 2007-1 / 42.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:陈志武金融投资课    rating:8.2    writer:None    translator:None    pub_info: 中信出版集团 / 2019-3 / 68.00    ISBN:None    series:None    tags:N    o    n    e    
+title:财务会计教程    rating:9.3    writer:None    translator:None    pub_info: 人民邮电出版社 / 2005-6 / 55.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:炒股的智慧 (第四版)    rating:9.0    writer:None    translator:None    pub_info: 中国社会科学出版社 / 2016-7-1 / 35.00    ISBN:None    series:None    tags:N    o    n    e    
+title:财务自由之路Ⅲ    rating:7.6    writer:None    translator:None    pub_info: 现代出版社 / 2019-3-1 / 45.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:通向财务自由之路    rating:8.4    writer:None    translator:None    pub_info: 机械工业出版社 / 2011-1-1 / 48.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:机构投资与基金管理的创新    rating:9.1    writer:None    translator:None    pub_info: 中国人民大学出版社 / 2002-4 / 40.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:财务自由之路. Ⅱ    rating:7.4    writer:None    translator:None    pub_info: 现代出版社 / 2018-10 / 45.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:梦想与浮沉    rating:8.7    writer:None    translator:None    pub_info: 机械工业出版社 / 2016-1-1 / CNY 69.00    ISBN:None    series:None    tags:N    o    n    e    
+title:真希望我20几岁就知道的事    rating:7.4    writer:None    translator:None    pub_info: 陕西师范大学出版社 / 2010-4 / 26.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:波克夏大學    rating:8.8    writer:None    translator:None    pub_info: 大牌出版 / 2018-11-14 / 650元    ISBN:None    series:None    tags:N    o    n    e    
+title:五大关键数字力    rating:9.2    writer:None    translator:None    pub_info: 商周出版 / 2017-1-17 / 420    ISBN:None    series:None    tags:N    o    n    e    
+title:滚雪球（下）    rating:8.1    writer:None    translator:None    pub_info: 中信出版社 / 2009-1 / 39.00    ISBN:None    series:None    tags:N    o    n    e    
+title:富爸爸穷爸爸（最新修订版）    rating:8.4    writer:None    translator:None    pub_info: 四川文艺出版社 / 2014-1-1 / CNY 28.00    ISBN:None    series:None    tags:N    o    n    e    
+title:你也可以成为股市天才    rating:8.6    writer:None    translator:None    pub_info:格林布拉特 / 2008.11 / 60    ISBN:None    series:None    tags:N    o    n    e    
+title:价值投资的十项核心原则    rating:8.3    writer:None    translator:None    pub_info: 中国青年出版社 / 2020-7-1 / 69.90元    ISBN:None    series:None    tags:N    o    n    e    
+title:穿过迷雾    rating:8.1    writer:None    translator:None    pub_info: 中国经济出版社 / 2016-10-1 / 68    ISBN:None    series:None    tags:N    o    n    e    
+title:股市趋势技术分析    rating:8.1    writer:None    translator:None    pub_info: 机械工业出版社 / 2010-6 / 78.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:积极型资产配置指南    rating:8.2    writer:None    translator:None    pub_info: 机械工业出版社 / 2018-1 / 69    ISBN:None    series:None    tags:N    o    n    e    
+title:通向财务自由之路    rating:8.4    writer:None    translator:None    pub_info: 机械工业出版社 / 2008年 / 48.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:中产阶级如何保护自己的财富    rating:7.4    writer:None    translator:None    pub_info: 中国友谊出版公司 / 2017-4-1 / 48    ISBN:None    series:None    tags:N    o    n    e    
+title:高胜算操盘：成功交易员完全教程    rating:8.9    writer:None    translator:None    pub_info: 机械工业出版社 / 2017-7 / 69.00    ISBN:None    series:None    tags:N    o    n    e    
+title:Your Money or Your Life    rating:8.4    writer:None    translator:None    pub_info: Penguin Books / 2008-12 / USD 16.00    ISBN:None    series:None    tags:N    o    n    e    
+title:投资交易笔记    rating:8.5    writer:None    translator:None    pub_info: 经济科学 / 2011-6 / 52.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:营救华尔街    rating:8.7    writer:None    translator:None    pub_info: 上海远东出版社 / 2003-1 / 49.80元    ISBN:None    series:None    tags:N    o    n    e    

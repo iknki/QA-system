@@ -1,0 +1,30 @@
+title:古文观止    rating:9.1    writer:None    translator:None    pub_info: 中华书局 / 1987-1-1 / 21.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:现代艺术150年    rating:9.1    writer:None    translator:None    pub_info: 广西师范大学出版社 / 2017-3-1 / 65.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:战争与和平    rating:9.4    writer:None    translator:None    pub_info: 人民文学出版社 / 2015-4 / 88.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:冰与火之歌    rating:9.5    writer:None    translator:None    pub_info: 重庆出版社 / 2013-10-1 / 330.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:菊与刀    rating:8.2    writer:None    translator:None    pub_info: 商务印书馆 / 1990-6 / 16.00    ISBN:None    series:None    tags:N    o    n    e    
+title:哲学家们都干了些什么    rating:8.6    writer:None    translator:None    pub_info: 北京联合出版公司 / 2015-4 / 52.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:世界的苦难    rating:9.4    writer:None    translator:None    pub_info: 中国人民大学出版社 / 2017-1 / 138.00    ISBN:None    series:None    tags:N    o    n    e    
+title:埃及、希腊与罗马    rating:9.2    writer:None    translator:None    pub_info: 后浪丨民主与建设出版社 / 2020-9 / 168.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:什么是民粹主义？    rating:8.1    writer:None    translator:None    pub_info: 译林出版社 / 2020-5 / 49.00    ISBN:None    series:None    tags:N    o    n    e    
+title:巴芒演义    rating:9.1    writer:None    translator:None    pub_info: 中国经济出版社 / 2020-3 / 69元    ISBN:None    series:None    tags:N    o    n    e    
+title:山月记    rating:8.7    writer:None    translator:None    pub_info: 中华书局 / 2013-5 / 28    ISBN:None    series:None    tags:N    o    n    e    
+title:中国哲学简史    rating:8.9    writer:None    translator:None    pub_info: 新世界出版社 / 2004-1 / 38.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:昭和风，平成雨    rating:0.0    writer:None    translator:None    pub_info: 漓江出版社 / 2021-1 / 58.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:家庭、私有制和国家的起源    rating:8.9    writer:None    translator:None    pub_info: 人民出版社 / 2003-5-1 / 12.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:东西街    rating:9.1    writer:None    translator:None    pub_info: 后浪丨民主与建设出版社 / 2020-6 / 88.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:李光耀观天下    rating:9.2    writer:None    translator:None    pub_info: 北京大学出版社 / 2015-6 / 58.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:上帝掷骰子吗    rating:9.3    writer:None    translator:None    pub_info: 辽宁教育出版社 / 2008-9 / 35.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:射雕英雄传    rating:9.1    writer:None    translator:None    pub_info: 生活·读书·新知三联书店 / 1994-5 / 76.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:陈寅恪魏晋南北朝史讲演录    rating:9.0    writer:None    translator:None    pub_info: 贵州人民出版社 / 2007-4 / 29.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:魏晋之际的政治权力与家族网络    rating:9.4    writer:None    translator:None    pub_info: 上海古籍出版社 / 2015-6-1 / 76.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:衰世与西法    rating:9.4    writer:None    translator:None    pub_info: 一頁folio | 广西师范大学出版社 / 2020-10 / 138.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:史记    rating:9.5    writer:None    translator:None    pub_info: 中华书局 / 2006-6 / 28.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:中国法律与中国社会    rating:9.2    writer:None    translator:None    pub_info: 中华书局 / 2003-09-01 / 28.00    ISBN:None    series:None    tags:N    o    n    e    
+title:李鸿章·袁世凯（精装全二册）    rating:0.0    writer:None    translator:None    pub_info: 理想国丨北京日报出版社 / 2021-1 / 88    ISBN:None    series:None    tags:N    o    n    e    
+title:从胡地到戎墟    rating:0.0    writer:None    translator:None    pub_info: 北京师范大学出版社 / 2020-12-29 / 69.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:大英博物馆世界简史（全3册）    rating:9.2    writer:None    translator:None    pub_info: 新星出版社 / 2014-1 / 108.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:长安十二时辰 下    rating:7.6    writer:None    translator:None    pub_info: 湖南文艺出版社 / 2017-1-1 / 39.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:大流感    rating:8.5    writer:None    translator:None    pub_info: 上海科技教育出版社 / 2018-7-1 / 98.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:逃不开的经济周期    rating:8.5    writer:None    translator:None    pub_info: 中信出版社 / 2012-11 / 69.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:苦炼    rating:9.3    writer:None    translator:None    pub_info: 上海三联书店 / 2012-4 / 28.00元    ISBN:None    series:None    tags:N    o    n    e    

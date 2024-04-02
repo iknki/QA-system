@@ -1,0 +1,30 @@
+title:回归故里    rating:9.0    writer:None    translator:None    pub_info: 上海文化出版社 / 2020-7 / 48.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:你当像鸟飞往你的山    rating:8.8    writer:None    translator:None    pub_info: 南海出版公司 / 2019-10-20 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:知晓我姓名    rating:9.4    writer:None    translator:None    pub_info:上海人民出版社 / 2020-8 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:目光    rating:8.9    writer:None    translator:None    pub_info: 百花洲文艺出版社 / 2020-10 / 49.8    ISBN:None    series:None    tags:N    o    n    e    
+title:秋园    rating:8.9    writer:None    translator:None    pub_info: 北京联合出版公司 / 2020-6-1 / 38.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:邓小平时代    rating:9.2    writer:None    translator:None    pub_info: 生活·读书·新知三联书店 / 2013-1 / 88.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:司马迁的记忆之野    rating:8.9    writer:None    translator:None    pub_info: 百花文艺出版社 / 2020-11 / 38.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:我们仨    rating:8.7    writer:None    translator:None    pub_info: 生活·读书·新知三联书店 / 2003-7 / 18.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:看见    rating:8.8    writer:None    translator:None    pub_info: 广西师范大学出版社 / 2013-1-1 / 39.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:月亮和六便士    rating:9.1    writer:None    translator:None    pub_info: 上海译文出版社 / 2009-10 / 32.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:一生的旅程    rating:8.7    writer:None    translator:None    pub_info: 文汇出版社 / 2020-5-1 / 88    ISBN:None    series:None    tags:N    o    n    e    
+title:浮生六记    rating:8.8    writer:None    translator:None    pub_info: 人民文学出版社 / 1999-1 / 5.70元    ISBN:None    series:None    tags:N    o    n    e    
+title:人生的枷锁    rating:9.0    writer:None    translator:None    pub_info: 上海译文出版社 / 2007-3 / 32.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:用电影燃尽欲望    rating:8.9    writer:None    translator:None    pub_info: 北京联合出版公司 / 2020-10 / 55.00    ISBN:None    series:None    tags:N    o    n    e    
+title:史蒂夫·乔布斯传    rating:8.7    writer:None    translator:None    pub_info: 中信出版社 / 2011-10-24 / 68.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:蛤蟆的油    rating:8.5    writer:None    translator:None    pub_info: 南海出版公司 / 2014-8 / 39.50元    ISBN:None    series:None    tags:N    o    n    e    
+title:罪恶之城的骑士    rating:8.4    writer:None    translator:None    pub_info: 南京大学出版社 / 2020-3 / 78.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:曾国藩的正面与侧面    rating:8.3    writer:None    translator:None    pub_info: 民主与建设出版社 / 2014-5 / 39.8元    ISBN:None    series:None    tags:N    o    n    e    
+title:伽达默尔传：理解的善良意志    rating:9.2    writer:None    translator:None    pub_info: 拜德雅 | 上海社会科学院出版社 / 2020-4 / 98.00    ISBN:None    series:None    tags:N    o    n    e    
+title:战胜一切市场的人    rating:8.3    writer:None    translator:None    pub_info: 中信出版社 / 2019-4-1 / 98.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:椰壳碗外的人生    rating:8.9    writer:[美]本尼迪克特·安德森    translator:徐德林    pub_info: 上海人民出版社 / 2018-8 / 49.80元    ISBN: 9787208151512    series:None    tags:本尼迪克特·安德森    人类学    传记    回忆录    社会学    自传    政治学    美国    
+title:列奥纳多·达·芬奇传    rating:8.8    writer:None    translator:None    pub_info: 中信出版社 / 2018-7 / 99.00    ISBN:None    series:None    tags:N    o    n    e    
+title:坏血    rating:8.1    writer:None    translator:None    pub_info: 北京联合出版公司 / 2019-4 / 49.80    ISBN:None    series:None    tags:N    o    n    e    
+title:威廉·华兹华斯传    rating:0.0    writer:None    translator:None    pub_info: 广西师范大学出版社 / 2020-11 / 186.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:建筑家安藤忠雄    rating:8.9    writer:None    translator:None    pub_info: 中信出版社 / 2011-3-1 / 88.00    ISBN:None    series:None    tags:N    o    n    e    
+title:腾讯传    rating:7.8    writer:None    translator:None    pub_info: 浙江大学出版社 / 2017-1-1 / 58.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:钻石与铁锈    rating:8.1    writer:None    translator:None    pub_info: 一頁folio | 北京联合出版公司 / 2020-6-6 / 68.00    ISBN:None    series:None    tags:N    o    n    e    
+title:说吧，记忆    rating:8.8    writer:None    translator:None    pub_info: 上海译文出版社 / 2009-4 / 28.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:创新公司    rating:8.7    writer:None    translator:None    pub_info: 中信出版社 / 2015-2 / 49.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:蒋介石与现代中国    rating:8.6    writer:None    translator:None    pub_info: 中信出版社 / 2012-8 / 68.00元    ISBN:None    series:None    tags:N    o    n    e    

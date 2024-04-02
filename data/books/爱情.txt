@@ -1,0 +1,45 @@
+title:最好的我们    rating:8.7    writer:None    translator:None    pub_info: 湖南文艺出版社 / 2013-8-5 / 55    ISBN:None    series:None    tags:N    o    n    e    
+title:荆棘鸟    rating:8.6    writer:None    translator:None    pub_info: 译林出版社 / 1998-7 / 28.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:挪威的森林    rating:8.5    writer:None    translator:None    pub_info: 上海译文出版社 / 2007-7 / 23.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:茶花女    rating:8.2    writer:None    translator:None    pub_info: 外国文学出版社 / 1997-3 / 9.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:正常人    rating:8.2    writer:None    translator:None    pub_info: 上海译文出版社 / 2020-7 / 49.8    ISBN:None    series:None    tags:N    o    n    e    
+title:红玫瑰与白玫瑰    rating:8.4    writer:None    translator:None    pub_info: 花城出版社 / 1996-06 / 12.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:倾城之恋    rating:8.5    writer:None    translator:None    pub_info:花城出版社 / 1997-3-1 / 11.00    ISBN:None    series:None    tags:N    o    n    e    
+title:情书    rating:8.6    writer:None    translator:None    pub_info: 天津人民出版社 / 2004-7 / 18.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:金锁记    rating:8.6    writer:None    translator:None    pub_info: 哈尔滨出版社 / 2005-6 / 13.5元    ISBN:None    series:None    tags:N    o    n    e    
+title:绿毛水怪    rating:9.0    writer:None    translator:None    pub_info: 时代文艺出版社 / 2009-1 / 30.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:陆犯焉识    rating:8.8    writer:None    translator:None    pub_info: 作家出版社 / 2011-10 / 35.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:那些回不去的年少时光    rating:8.4    writer:None    translator:None    pub_info: 江苏文艺出版社 / 2010-01 / 23.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:金瓶梅    rating:9.2    writer:None    translator:None    pub_info: 新加坡南洋出版社 / 2009-11-1 / 466    ISBN:None    series:None    tags:N    o    n    e    
+title:生吞    rating:8.1    writer:None    translator:None    pub_info: 浙江文艺出版社 / 2017-11-1 / 39.00    ISBN:None    series:None    tags:N    o    n    e    
+title:撒哈拉的故事    rating:9.0    writer:None    translator:None    pub_info: 皇冠出版社 / 1976 / 160 TWD    ISBN:None    series:None    tags:N    o    n    e    
+title:如何不喜欢一个人    rating:7.6    writer:None    translator:None    pub_info: 北京联合出版公司 / 2017-4-2 / 42.00    ISBN:None    series:None    tags:N    o    n    e    
+title:面纱    rating:9.0    writer:None    translator:None    pub_info: 江西人民出版社 / 2016-4-1 / 39.8元    ISBN:None    series:None    tags:N    o    n    e    
+title:包法利夫人    rating:8.1    writer:None    translator:None    pub_info: 人民文学出版社 / 2003-01 / 12.00    ISBN:None    series:None    tags:N    o    n    e    
+title:霸王别姬    rating:9.1    writer:None    translator:None    pub_info: 新星出版社 / 2013-10 / 59.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:魔道祖師 一    rating:8.0    writer:None    translator:None    pub_info: 平心工作室 / 2016-12-8 / NT330元    ISBN:None    series:None    tags:N    o    n    e    
+title:傲慢与偏见    rating:9.1    writer:None    translator:None    pub_info: 上海译文出版社 / 1986 / 11.80    ISBN:None    series:None    tags:N    o    n    e    
+title:多情剑客无情剑(上、中、下)    rating:8.7    writer:None    translator:None    pub_info: 海天出版社 / 1991-12-01 / 49.8    ISBN:None    series:None    tags:N    o    n    e    
+title:伊豆的舞女    rating:8.2    writer:None    translator:None    pub_info: 广西师范大学出版社 / 2002-2 / 23.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:边城    rating:8.9    writer:None    translator:None    pub_info: 北京十月文艺出版社 / 2008-07 / 29.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:梦里花落知多少    rating:7.1    writer:None    translator:None    pub_info: 春风文艺出版社 / 2003-11 / 20.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:罗密欧与朱丽叶（名著名译插图本）    rating:8.3    writer:None    translator:None    pub_info: 人民文学出版社 / 2003-01 / 18.00    ISBN:None    series:None    tags:N    o    n    e    
+title:我执    rating:8.0    writer:None    translator:None    pub_info: 广西师范大学出版社 / 2010-10 / 35.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:不能承受的生命之轻    rating:9.1    writer:None    translator:None    pub_info: 上海译文出版社 / 2014-6 / 46.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:挪威的森林    rating:8.6    writer:None    translator:None    pub_info: 上海译文出版社 / 2018-3 / 38.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:雪落香杉树    rating:8.3    writer:None    translator:None    pub_info: 全本书店|作家出版社 / 2017-6 / 52.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:牛虻    rating:8.2    writer:None    translator:None    pub_info: 中国青年出版社 / 1953-07 / 13.90    ISBN:None    series:None    tags:N    o    n    e    
+title:柏林苍穹下    rating:8.4    writer:None    translator:None    pub_info: 后浪丨海峡文艺出版社 / 2020-3 / 138.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:潮骚    rating:8.2    writer:None    translator:None    pub_info: 上海译文出版社 / 2009-1 / 15.00    ISBN:None    series:None    tags:N    o    n    e    
+title:第九个寡妇    rating:8.6    writer:None    translator:None    pub_info: 作家出版社 / 2006-3 / 25.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:亲密关系：通往灵魂的桥梁    rating:7.7    writer:None    translator:None    pub_info: 湖南文艺出版社 / 2015-4 / 35.00    ISBN:None    series:None    tags:N    o    n    e    
+title:撒哈拉的故事    rating:9.2    writer:None    translator:None    pub_info: 北京十月文艺出版社 / 2017-3-1 / CNY 35.00    ISBN:None    series:None    tags:N    o    n    e    
+title:恨，友谊，追求，爱情，婚姻    rating:8.5    writer:None    translator:None    pub_info: 译林出版社 / 2013-11 / 35.00    ISBN:None    series:None    tags:N    o    n    e    
+title:死于威尼斯    rating:8.3    writer:None    translator:None    pub_info: 上海译文出版社 / 2010-5 / 20.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:少年巴比伦    rating:8.6    writer:None    translator:None    pub_info: 重庆出版社 / 2008-8 / 22.00元    ISBN:None    series:None    tags:N    o    n    e    
+title:古都    rating:8.7    writer:None    translator:None    pub_info: 南海出版公司 / 2014-1 / 39.50元    ISBN:None    series:None    tags:N    o    n    e    
+title:且听风吟    rating:7.8    writer:None    translator:None    pub_info: 上海译文出版社 / 2001-8 / 11.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:包法利夫人    rating:8.5    writer:None    translator:None    pub_info: 上海译文出版社 / 2007-3-1 / 12.0    ISBN:None    series:None    tags:N    o    n    e    
+title:爱的多重奏    rating:8.2    writer:None    translator:None    pub_info: 华东师范大学出版社 / 2012-9 / 24.80元    ISBN:None    series:None    tags:N    o    n    e    
+title:独居的一年    rating:8.1    writer:None    translator:None    pub_info: 江苏凤凰文艺出版社 / 2017-8-1 / 68.00    ISBN:None    series:None    tags:N    o    n    e    
+title:围城    rating:9.3    writer:None    translator:None    pub_info: 人民文学出版社 / 2017-6 / 36.00    ISBN:None    series:None    tags:N    o    n    e    
