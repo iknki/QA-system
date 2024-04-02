@@ -18,5 +18,6 @@ class ChatResponse(BaseModel):
 
 
 class Session(BaseModel):
+    sessionid: int
     question: str
 
