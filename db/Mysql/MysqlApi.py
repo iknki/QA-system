@@ -1,6 +1,17 @@
 import pymysql
 from markdown import markdown
+import string
+import random
+import datetime
+from pydantic import BaseModel
 
+
+class Knowledge(BaseModel):
+    title: str
+    info: str
+
+
+# 将mysql中的messages转换为markdown格式
 def trans(messages):
     res = []
     for message in messages:
@@ -8,7 +19,7 @@ def trans(messages):
         # 获取角色 从第6个字符开始到content_index-1
         role = message[6 : content_index - 1].strip("'")
         content = message[content_index + len("content=") :].strip("'")
-        
+
         # 将content转换为markdown格式
         content = content.replace("\\n", "\n")
         content = markdown(content)
@@ -23,6 +34,13 @@ def trans(messages):
         res.append(data_dict)
     return res
 
+
+# 生成随机字符串
+def generate_random_string(length=10):
+    characters = string.ascii_lowercase + string.digits
+    return "".join(random.choice(characters) for _ in range(length))
+
+
 class MysqlApi:
     def __init__(self):
         # 连接数据库
@@ -31,6 +49,128 @@ class MysqlApi:
         self.password = "123456"
         self.database = "QADB"
         self.port = 3306
+
+    """日志操作"""
+    # 创建日志
+    def create_log(self, userid, logcontent, status):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 查询用户名
+            cursor.execute("SELECT UserName FROM Users WHERE UserID = %s", (userid))
+            username = cursor.fetchone()[0]
+
+            # 插入日志数据
+            cursor.execute(
+                "INSERT INTO Logs (UserID, UserName, LogContent, Status) VALUES (%s, %s, %s, %s)",
+                (userid, username, logcontent, status),
+            )
+            # 提交事务
+            db_connection.commit()
+            print("日志插入成功！")
+            return {"status": 0, "message": "日志插入成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 删除日志
+    def delete_log(self, logid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+
+            # 删除日志数据
+            cursor.execute("DELETE FROM Logs WHERE LogID = %s", (logid))
+            # 提交事务
+            db_connection.commit()
+            print("日志删除成功！")
+            return {"status": 0, "message": "日志删除成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 获取日志列表
+    def get_logList(self, pagenum, pagesize):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+
+            # 查询日志数据
+            cursor.execute("SELECT COUNT(*) AS total_count FROM Logs",)
+            total_count = cursor.fetchone()[0]
+            cursor.execute(
+                "SELECT LogID, UserID, UserName, LogContent, Status, DATE_FORMAT(Timestamp, '%%Y-%%m-%%d %%H:%%i:%%S') FROM Logs ORDER BY Timestamp DESC LIMIT %s, %s",
+                ((pagenum - 1) * pagesize, pagesize),
+            )
+            # 获取查询结果
+            loglist = []
+            results = cursor.fetchall()
+            for result in results:
+                loglist.append(
+                    {
+                        "logid": result[0],
+                        "userid": result[1],
+                        "username": result[2],
+                        "logcontent": result[3],
+                        "status": result[4],
+                        "timestamp": result[5],
+                    }
+                )
+            return {"status": 0, "logs": loglist, "total": total_count}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "loglist": None}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
 
     """用户操作"""
     # 创建用户
@@ -54,7 +194,7 @@ class MysqlApi:
             cursor.execute("SELECT * FROM Users WHERE Username = %s", (username))
             result = cursor.fetchone()
             print("数据插入成功！")
-            return {"status": 0, "message": "注册成功！","token": result[0]}
+            return {"status": 0, "message": "注册成功！","token": {"id": result[0], "role": result[3]}}
 
         except pymysql.Error as err:
             print("数据库错误：", err.args[0], err.args[1])
@@ -105,7 +245,7 @@ class MysqlApi:
         if result is None:
             return {"status": 1, "message": "用户不存在！","token": None}
         if result[2] == password:
-            return {"status": 0, "message": "登录成功！","token": result[0]}
+            return {"status": 0, "message": "登录成功！","token": {"id": result[0], "role": result[3]}}
         else:
             return {"status": 1, "message": "用户名或密码错误！","token": None}
 
@@ -148,7 +288,7 @@ class MysqlApi:
     def update_user(self, username, password, newpassword):
         try:
             # 验证用户
-            validate = validate_user(username, password)
+            validate = self.validate_user(username, password)
             if validate.status == 1:
                 return {"status": 1, "message": "用户名或密码错误！","token": None}
             # 获取游标
@@ -199,12 +339,15 @@ class MysqlApi:
             sessionid = cursor.lastrowid
             db_connection.commit()
             print("数据插入成功！")
-            cursor.execute("SELECT * FROM Sessions WHERE UserID = %s AND SessionID = %s", (userid, sessionid))
+            cursor.execute(
+                "SELECT SessionID, DATE_FORMAT(CreateTime, '%%m-%%d'), SessionName FROM Sessions WHERE UserID = %s AND SessionID = %s",
+                (userid, sessionid),
+            )
             result = cursor.fetchone()
             session={
                "sessionid": result[0],
-                "createtime": result[2],
-                "sessionname": result[3],                
+                "createtime": result[1],
+                "sessionname": result[2],                
             }
             return {"status": 0, "message": "创建成功！", "session": session}
 
@@ -259,7 +402,7 @@ class MysqlApi:
                 print("数据库连接已关闭。")
 
     # 删除Session
-    def delete_session(self, userid, sessionname):
+    def delete_session(self, sessionid):
         try:
             # 获取游标
             db_connection = pymysql.connect(
@@ -270,8 +413,10 @@ class MysqlApi:
                 port=self.port,
             )
             cursor = db_connection.cursor()
-            # 删除Session数据
-            cursor.execute("DELETE FROM Sessions WHERE UserID = %s AND SessionName = %s", (userid, sessionname))
+            # 删除对话记录表中与该会话相关的所有对话记录
+            cursor.execute(f"DELETE FROM Conversations WHERE SessionID = %s", (sessionid))
+            # 删除会话
+            cursor.execute("DELETE FROM Sessions WHERE SessionID = %s", (sessionid))
             # 提交事务
             db_connection.commit()
             print("数据删除成功！")
@@ -291,7 +436,7 @@ class MysqlApi:
                 print("数据库连接已关闭。")
 
     # 更新Session
-    def update_session(self, userid, sessionname, newname):
+    def update_session(self, sessionid, newname):
         try:
             # 获取游标
             db_connection = pymysql.connect(
@@ -303,7 +448,7 @@ class MysqlApi:
             )
             cursor = db_connection.cursor()
             # 更新Session数据
-            cursor.execute("UPDATE Sessions SET SessionName = %s WHERE UserID = %s AND SessionName = %s", (newname, userid, sessionname))
+            cursor.execute("UPDATE Sessions SET SessionName = %s WHERE SessionName = %s", (newname, sessionid))
             # 提交事务
             db_connection.commit()
             print("数据更新成功！")
@@ -335,7 +480,6 @@ class MysqlApi:
                 port=self.port,
             )
             cursor = db_connection.cursor()
-            # message_str = json.dumps(message)
             # 插入Conversation数据
             for message in messages:
                 cursor.execute("INSERT INTO Conversations (SessionID, Message) VALUES (%s, %s)", (sessionid, message))
@@ -386,6 +530,596 @@ class MysqlApi:
 
         finally:
             # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    """知识库操作"""
+    # 新建知识库
+    def create_indices(self, kbname, info, userid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 获取索引名
+            indices = generate_random_string()
+            # 插入索引数据
+            cursor.execute(
+                "INSERT INTO KnowledgeBases (KBName, Info, Indices, UserID, DataCount) VALUES (%s, %s, %s, %s, %s)",
+                (kbname, info, indices, userid, 0),
+            )
+            # 提交事务
+            db_connection.commit()
+            kbid = cursor.lastrowid
+            print("知识库创建成功！")
+            kblist = {
+                "kbid": kbid,
+                "kbname": kbname,
+                "info": info,
+                "indices": indices,
+                "datacount": 0,
+                "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            }
+            return {"status": 0, "message": "创建成功！", "kblist": kblist}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 编辑知识库
+    def edit_kb(self, kbid, kbname, info):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 更新知识库数据
+            cursor.execute("UPDATE KnowledgeBases SET KBName = %s, Info = %s WHERE KBID = %s", (kbname, info, kbid))
+            # 提交事务
+            db_connection.commit()
+            # 更新知识条目数据
+            cursor.execute(
+                "UPDATE Knowledge SET KBName = %s WHERE KBID = %s",
+                (kbname, kbid),
+            )
+            # 提交事务
+            db_connection.commit()
+            print("知识库编辑成功！")
+            return {"status": 0, "message": "编辑成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 删除知识库
+    def delete_kb(self, indices):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 删除知识库数据
+            cursor.execute(
+                "Delete FROM Knowledge WHERE Indices = %s", (indices)
+            )
+            # 提交事务
+            db_connection.commit()
+            # 删除知识库
+            cursor.execute(
+                "Delete FROM KnowledgeBases WHERE Indices = %s", (indices)
+            )
+            db_connection.commit()
+            print("知识库删除成功！")
+            return {"status": 0, "message": "删除成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 获得知识库列表
+    def get_kbList(self, userid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 用户鉴权
+            cursor.execute(
+                "SELECT * FROM Users WHERE UserID = %s",
+                (userid),
+            )
+            result = cursor.fetchone()
+            userrole = result[3]
+            id = ''
+            # 查询知识库数据
+            if(userrole == 'admin'):
+                cursor.execute(
+                    "SELECT KBID, KBName, Info, Indices, DataCount, DATE_FORMAT(Timestamp, '%Y-%m-%d %H:%i:%S'), UserID FROM KnowledgeBases"
+                )
+            else:
+                cursor.execute(
+                    "SELECT KBID, KBName, Info, Indices, DataCount, DATE_FORMAT(Timestamp, '%%Y-%%m-%%d %%H:%%i:%%S'), UserID FROM KnowledgeBases WHERE UserID = %s",
+                    (userid,),
+                )
+            # 获取查询结果
+            kblist = []
+            results = cursor.fetchall()
+            for result in results:
+                # 查询拥有者名字
+                cursor.execute(
+                    "SELECT * FROM Users WHERE UserID = %s",
+                    (result[6]),
+                )
+                result2 = cursor.fetchone()
+                username = result2[1]
+                kblist.append(
+                    {
+                        "kbid": result[0],
+                        "kbname": result[1],
+                        "info": result[2],
+                        "indices": result[3],
+                        "datacount": result[4],
+                        "timestamp": result[5],
+                        "username": username,
+                    }
+                )
+            return {"status": 0, "kblist": kblist}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "kblist": None}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 获取ES的索引名
+    def get_indices(self, id, flag):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            if flag==0: # flag=0表示知识库
+                cursor.execute("SELECT Indices FROM KnowledgeBases WHERE KBID = %s", (id))
+            else: # flag=1表示知识
+                cursor.execute("SELECT Indices FROM Knowledge WHERE KnowledgeID = %s", (id))
+            result = cursor.fetchone()
+            return result[0]
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    """知识操作"""
+    # 新建知识条目
+    def create_knowledge(self, indices, title, info, userid, istrain='false'):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 获取知识库ID和知识数目
+            cursor.execute("SELECT KBID, KBName, DataCount FROM KnowledgeBases WHERE Indices = %s", (indices))
+            result = cursor.fetchone()
+            count = result[2]
+            # 插入知识数据
+            count = count+1
+            cursor.execute(
+                "INSERT INTO Knowledge (Title, Info, IsTrain, KBID, KBName, Indices, UserID) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                (title, info, istrain, result[0], result[1], indices, userid),
+            )
+            # 提交事务
+            db_connection.commit()
+            # 查询新建知识数据
+            id = cursor.lastrowid
+
+            # 更新知识库的条目
+            cursor.execute(
+                "UPDATE KnowledgeBases SET DataCount = %s WHERE Indices = %s", (count, indices)
+            )
+            # 提交事务
+            db_connection.commit()
+
+            cursor.execute(
+                "SELECT KnowledgeID, Title, Info, KBID, KBName, Indices, DATE_FORMAT(Timestamp, '%%Y-%%m-%%d %%H:%%i:%%S'), IsTrain FROM Knowledge WHERE KnowledgeID = %s",
+                (id),
+            )
+            # 获取查询结果
+            result = cursor.fetchone()
+            knowledge = {
+                "knowledgeid": result[0],
+                "title": result[1],
+                "info": result[2],
+                "kbid": result[3],
+                "kbname": result[4],
+                "indices": result[5],
+                "timestamp": result[6],
+                "istrain": result[7],
+            }
+            print("知识创建成功！")
+            return {"status": 0, "message": "知识创建成功！", "knowledge": knowledge}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 编辑知识条目
+    def edit_knowledge(self, knowledgeid, title, info, istrain):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            cursor.execute("UPDATE Knowledge SET Title = %s, Info = %s, IsTrain = %s WHERE KnowledgeID = %s",
+                   (title, info, istrain, knowledgeid))
+            db_connection.commit()
+            print("知识编辑成功！")
+            return {"status": 0, "message": "知识编辑成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 删除知识条目
+    def delete_knowledge(self, index_name, knowledgeid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 删除知识数据
+            cursor.execute("DELETE FROM Knowledge WHERE KnowledgeID = %s", (knowledgeid))
+            db_connection.commit()
+            # 减少知识库的知识数量
+            cursor.execute(
+                "SELECT DataCount FROM KnowledgeBases WHERE Indices = %s",
+                (index_name),
+            )
+            count = cursor.fetchone()[0]
+            # 更新数量
+            count = count - 1
+            cursor.execute(
+                "UPDATE KnowledgeBases SET DataCount = %s WHERE Indices = %s",
+                (count, index_name),
+            )
+            # 提交事务
+            db_connection.commit()
+            print("知识删除成功！")
+            return {"status": 0, "message": "知识删除成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 获取知识列表
+    def get_knowledgeList(self, pagenum, pagesize, kbid, title, userid, istrain):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 对用户进行鉴权
+            cursor.execute(
+                "SELECT UserRole FROM Users WHERE UserID = %s",
+                (userid),
+            )
+            userrole = cursor.fetchone()[0]
+            # 查询知识数据
+            query = "SELECT KnowledgeID, Title, Info, KBID, KBName, Indices, DATE_FORMAT(Timestamp, '%%Y-%%m-%%d %%H:%%i:%%S'), IsTrain FROM Knowledge WHERE 1=1"
+            query2 = "SELECT COUNT(*) AS total_count FROM Knowledge WHERE 1=1"
+            params = []
+            if kbid is not None:
+                query += " AND KBID = %s"
+                query2 += " AND KBID = %s"
+                params.append(kbid)
+            if title is not None:
+                query += " AND Title LIKE %s"
+                query2 += " AND Title LIKE %s"
+                params.append(f"%{title}%")
+            if userrole != 'admin':
+                query += " AND UserID = %s"
+                query2 += " AND UserID = %s"
+                params.append(userid)
+            if istrain != '':
+                query += " AND IsTrain = %s"
+                query2 += " AND IsTrain = %s"
+                params.append(istrain)
+
+            # 执行总数查询
+            cursor.execute(query2, tuple(params))
+            # 获取查询结果
+            total_count = cursor.fetchone()[0]
+
+            # 设置排序
+            query += " ORDER BY Timestamp DESC"
+            # 分页
+            query += " LIMIT %s, %s"
+            params.append((pagenum - 1) * pagesize)
+            params.append(pagesize)
+            # 执行原始查询
+            cursor.execute(query, tuple(params))
+            # 获取查询结果
+            knowledgelist = []
+            results = cursor.fetchall()
+            for result in results:
+                knowledgelist.append(
+                    {
+                        "knowledgeid": result[0],
+                        "title": result[1],
+                        "info": result[2],
+                        "kbid": result[3],
+                        "kbname": result[4],
+                        "indices": result[5],
+                        "timestamp": result[6],
+                        "istrain": result[7],
+                    }
+                )
+            return {"status": 0, "knowledgelist": knowledgelist, "total": total_count}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "knowledgelist": None}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    """模型操作"""
+    # 获取模型列表
+    def get_modelList(self, userid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 查询模型数据
+            cursor.execute(
+                "SELECT ModelID, ModelName, Info, status, DATE_FORMAT(Timestamp, '%%Y-%%m-%%d %%H:%%i:%%S'), UserID, UserName FROM Models WHERE UserID = %s",
+                (userid),
+            )
+            # 获取查询结果
+            modellist = []
+            results = cursor.fetchall()
+            for result in results:
+                modellist.append(
+                    {
+                        "modelid": result[0],
+                        "modelname": result[1],
+                        "info": result[2],
+                        "status": result[3],
+                        "timestamp": result[4],
+                        "userid": result[5],
+                        "username": result[6],
+                    }
+                )
+            return {"status": 0, "modellist": modellist}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], 'message':'获取模型列表失败', "modellist": None}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 创建模型
+    def create_model(self, modelname, info, userid, status="训练中"):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 获取用户名
+            cursor.execute("SELECT Username FROM Users WHERE UserID = %s", (userid))
+            username = cursor.fetchone()[0]
+            # 插入模型数据
+            cursor.execute("INSERT INTO Models (ModelName, Info, UserID, Status, UserName) VALUES (%s, %s, %s, %s, %s)",
+                   (modelname, info, userid, status, username))
+            # 提交事务
+            db_connection.commit()
+            print("新模型创建成功！")
+            return {"status": 0, "message": "新模型创建成功、正在训练！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 编辑模型
+    def edit_model(self, modelid, modelname, info, status):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            cursor.execute("UPDATE Models SET ModelName = %s, Info = %s, Status = %s WHERE ModelID = %s",
+                   (modelname, info, status, modelid))
+            db_connection.commit()
+            print("模型编辑成功！")
+            return {"status": 0, "message": "模型编辑成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 删除模型
+    def delete_model(self, modelid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            # 获取模型名
+            cursor.execute("SELECT ModelName FROM Models WHERE ModelID = %s", (modelid))
+            modelname = cursor.fetchone()[0]
+            # 删除模型
+            cursor.execute("DELETE FROM Models WHERE ModelID = %s", (modelid))
+            db_connection.commit()
+            print("模型删除成功！")
+            return {"status": 0, "message": "模型删除成功！", "modelname": modelname}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
             if db_connection.open:
                 cursor.close()
                 db_connection.close()

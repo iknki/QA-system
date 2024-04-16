@@ -14,8 +14,6 @@ Spark_url = "ws://spark-api.xf-yun.com/v3.5/chat"  # v3环境的地址（"wss://
 text = []
 
 
-
-
 # length = 0
 
 def getText(role, content):
@@ -43,7 +41,7 @@ def checklen(text):
 def get_chat_response(question, index_name):
     text.clear
     prompt = Prompt().get_prompt()
-    es = ESApi("elastic", "w9nF5G7Pjt_lpVAcbqFy")
+    es = ESApi("elastic", "9YfcLUcxKiDvtzef1piK")
     knowledge = es.search_es(index_name, question)
     prompt = prompt.replace("{0}", str(knowledge))
     query = [
@@ -55,12 +53,9 @@ def get_chat_response(question, index_name):
     return message
 
 
-
-
 if __name__ == '__main__':
     text.clear
     while (1):
         question = input("\n" + "我:")
         print("星火:", end="")
         message = ModelApi.main(appid, api_secret, api_key, Spark_url, domain, question)
-
