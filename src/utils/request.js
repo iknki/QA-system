@@ -10,7 +10,7 @@ const baseURL = 'http://20.24.81.64:8000'
 const instance = axios.create({
     // 基地址，超时时间
     baseURL,
-    timeout:10000
+    timeout:30000
 })
 
 // 请求拦截器
@@ -42,7 +42,7 @@ instance.interceptors.response.use(
     },
     (error) => {
         // 错误默认情况
-        ElMessage.error(error.response.data.message || '服务异常')
+        ElMessage.error(error.response.data.content || '服务异常')
         return Promise.reject(error)
 
         //401错误（权限不足或token过期）=> 跳转登录页

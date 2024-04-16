@@ -75,7 +75,7 @@ const login = async () => {
       userStore.setToken(response.token)
       ElMessage.success(response ? response.message : '登陆成功')
       console.log('登陆处理完成')
-      await router.push({path: '/'})
+      router.push({path: '/'})
     }
   })
 }

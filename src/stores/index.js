@@ -1,5 +1,5 @@
 import { createPinia } from "pinia"
-import persist from 'Pinia-plugin-persistedstate'
+import persist from 'pinia-plugin-persistedstate'
 
 const pinia = createPinia()
 
@@ -9,3 +9,4 @@ export default pinia
 
 // 暴露stores接口
 export * from './modules/user'
+export * from './modules/chatBufferStore'
