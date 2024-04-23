@@ -1,5 +1,19 @@
 from pydantic import BaseModel
 from typing import Optional
+import json
+
+class UserInfo(BaseModel):
+    username: str
+    userid: int
+    nickname: Optional[str] = None
+    age: Optional[int] = None
+    sex: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    area: Optional[str] = None
+    job: Optional[str] = None
+
+
 class Response(BaseModel):
     status : int
     message: str
@@ -20,6 +34,7 @@ class ChatResponse(BaseModel):
 
 class Session(BaseModel):
     sessionId: int
+    userId: int
     question: str
 
 class CreateSession(BaseModel):
@@ -29,6 +44,7 @@ class CreateSession(BaseModel):
 
 class DeleteSession(BaseModel):
     sessionId: int
+    userId: int
 
 class CreateKnowledgeBase(BaseModel):
     userId: int
@@ -39,6 +55,7 @@ class KnowledgeBase(BaseModel):
     kbId: int
     kbname: str
     info: str
+    userId: int
 
 class CreateKnowledge(BaseModel):
     kbid: int
@@ -52,6 +69,7 @@ class EditKnowledge(BaseModel):
     title: str
     info: str
     istrain: str
+    userid: int
 
 class CreateModel(BaseModel):
     pastmodelid: Optional[int] = None
@@ -66,3 +84,6 @@ class EditModel(BaseModel):
     info: str
     userid: int
     status: str
+
+class Settings(BaseModel): 
+    data : dict

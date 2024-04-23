@@ -5,5 +5,5 @@ class Prompt:
         with open(file_path, 'r', encoding='utf-8') as f:
             self.prompt = json.load(f)
 
-    def get_prompt(self):
-        return self.prompt['summary']
+    def get_prompt(self, key):
+        return self.prompt[key]

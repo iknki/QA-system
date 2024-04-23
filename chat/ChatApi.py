@@ -1,6 +1,7 @@
 from llmmodel import ModelApi as ModelApi
 from llmmodel.Prompt import Prompt
 from db.ES.ESApi import ESApi
+import random
 
 # 以下密钥信息从控制台获取
 appid = "508af837"  # 填写控制台中获取的 APPID 信息
@@ -11,50 +12,45 @@ domain = "generalv3.5"  # v3版本
 # 云端环境的服务地址
 Spark_url = "ws://spark-api.xf-yun.com/v3.5/chat"  # v3环境的地址（"wss://spark-api.xf-yun.com/v3.1/chat）
 
-text = []
 
+class ChatApi:
+    def __init__(self, appid, api_secret, api_key, Spark_url, domain):
+        self.appid = appid
+        self.api_secret = api_secret
+        self.api_key = api_key
+        self.Spark_url = Spark_url
+        self.domain = domain
 
-# length = 0
+    def query(self, query):
+        message = ModelApi.main(self.appid, self.api_secret, self.api_key, self.Spark_url, self.domain, query)
+        return message
 
-def getText(role, content):
-    jsoncon = {}
-    jsoncon["role"] = role
-    jsoncon["content"] = content
-    text.append(jsoncon)
-    return text
+    def get_chat_response(self, question, index_name):
+        prompt = Prompt().get_prompt('summary')
+        es = ESApi("elastic", "9YfcLUcxKiDvtzef1piK")
+        knowledge = es.search_es(index_name, question)
+        prompt = prompt.replace("{0}", str(knowledge))
+        print(prompt)
+        query = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": question}
+        ]
 
-
-def getlength(text):
-    length = 0
-    for content in text:
-        temp = content["content"]
-        leng = len(temp)
-        length += leng
-    return length
-
-
-def checklen(text):
-    while (getlength(text) > 8000):
-        del text[0]
-    return text
-
-def get_chat_response(question, index_name):
-    text.clear
-    prompt = Prompt().get_prompt()
-    es = ESApi("elastic", "9YfcLUcxKiDvtzef1piK")
-    knowledge = es.search_es(index_name, question)
-    prompt = prompt.replace("{0}", str(knowledge))
-    query = [
-        {"role": "system", "content": prompt},
-        {"role": "user", "content": question}
-    ]
-
-    message = ModelApi.main(appid, api_secret, api_key, Spark_url, domain, query)
-    return message
+        message = self.query(query)
+        return message
+    
+    def get_rephrase_question(self, question):
+        prompt = Prompt().get_prompt('rephrase')
+        prompt = prompt.replace("{0}", question)
+        query = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": question}
+        ]
+        message = self.query(query)
+        return message
 
 
 if __name__ == '__main__':
-    text.clear
     while (1):
         question = input("\n" + "我:")
         print("星火:", end="")

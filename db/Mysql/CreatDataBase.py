@@ -18,15 +18,25 @@ def use_database(cursor):
 
 # 创建表格
 def create_tables(cursor):
-    cursor.execute("""
+    cursor.execute(
+        """
         CREATE TABLE IF NOT EXISTS Users (
             UserID INT AUTO_INCREMENT PRIMARY KEY,
             Username VARCHAR(255) NOT NULL,
             Password VARCHAR(255) NOT NULL,
+            NickName TEXT,
+            Sex TEXT,
+            Email TEXT,
+            Phone TEXT,
+            Area TEXT,
+            Job TEXT,
+            Age INT,
             UserRole ENUM('user', 'admin') DEFAULT 'user',
+            Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             UNIQUE (Username)
         )
-    """)
+    """
+    )
 
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS Sessions (
@@ -44,6 +54,7 @@ def create_tables(cursor):
             SessionID INT NOT NULL,
             Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             Message TEXT NOT NULL,
+            UserID INT NOT NULL,
             FOREIGN KEY (SessionID) REFERENCES Sessions(SessionID)
         )
     """)

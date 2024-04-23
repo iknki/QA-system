@@ -1,7 +1,22 @@
+es:
+  host: localhost
+  password: 9YfcLUcxKiDvtzef1piK
+  port: 9200
+  user: elastic
 llm:
-  APPID: 508af837
-  APISecret: ZTNkZjBkMmQwNzY0ZDVlNjkxZjBhNjY4
-  APIKey: 3df6675e31e2480676984973fb4965db
-  URL: ws(s)://spark-api.xf-yun.com/v3.5/chat
-  Domain: generalV3.5
-
+  Spark_url: ws(s)://spark-api.xf-yun.com/v3.5/chat
+  api_key: 3df6675e31e2480676984973fb4965db
+  api_secret: ZTNkZjBkMmQwNzY0ZDVlNjkxZjBhNjY4
+  appid: 508af837
+  domain: generalV3.5
+mysql:
+  database: QADB
+  host: localhost
+  password: '123456'
+  port: 3306
+  user: root
+recommendModel:
+  base_path: ./RecommendModel/Models/
+  model_id: 2
+  model_name: modelv2
+test: test1

@@ -42,13 +42,177 @@ def generate_random_string(length=10):
 
 
 class MysqlApi:
-    def __init__(self):
+    def __init__(self, host, user, password, database, port):
         # 连接数据库
-        self.host = "localhost"
-        self.user = "root"
-        self.password = "123456"
-        self.database = "QADB"
-        self.port = 3306
+        self.host = host
+        self.user = user
+        self.password = password
+        self.database = database
+        self.port = port
+
+    """数据总览操作"""
+    # 获取数据总览
+    def get_overview(self, userid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 鉴权
+            cursor.execute("SELECT UserRole FROM Users WHERE UserID = %s", (userid))
+            userrole = cursor.fetchone()[0]
+
+            # 查询知识库总数
+            if userrole == "admin":
+                cursor.execute("SELECT COUNT(*) FROM KnowledgeBases")
+                kb_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM KnowledgeBases WHERE DATE(Timestamp) = CURDATE()"
+                )
+                kb_current = cursor.fetchone()[0]
+            else:
+                cursor.execute(
+                    "SELECT COUNT(*) FROM KnowledgeBases WHERE UserID = %s", (userid)
+                )
+                kb_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM KnowledgeBases WHERE UserID = %s AND DATE(Timestamp) = CURDATE()",
+                    (userid),
+                )
+                kb_current = cursor.fetchone()[0]
+            # 查询知识总数
+            if userrole == "admin":
+                cursor.execute("SELECT COUNT(*) FROM Knowledge")
+                knowledge_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Knowledge WHERE DATE(Timestamp) = CURDATE()"
+                )
+                knowledge_current = cursor.fetchone()[0]
+            else:
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Knowledge WHERE UserID = %s", (userid)
+                )
+                knowledge_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Knowledge WHERE UserID = %s AND DATE(Timestamp) = CURDATE()",
+                    (userid),
+                )
+                knowledge_current = cursor.fetchone()[0]
+            # 查询对话总数
+            if userrole == "admin":
+                cursor.execute("SELECT COUNT(*) FROM Conversations")
+                conversation_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Conversations WHERE DATE(Timestamp) = CURDATE()"
+                )
+                conversation_current = cursor.fetchone()[0]
+            else:
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Conversations WHERE UserID = %s", (userid)
+                )
+                conversation_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Conversations WHERE UserID = %s AND DATE(Timestamp) = CURDATE()",
+                    (userid),
+                )
+                conversation_current = cursor.fetchone()[0]
+            # 查询模型总数
+            if userrole == "admin":
+                cursor.execute("SELECT COUNT(*) FROM Models")
+                model_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Models WHERE Status = '训练中'"
+                )
+                model_current = cursor.fetchone()[0]
+            else:
+                model_total = 0
+                model_current = 0
+            # 查询日志总数
+            if userrole == "admin":
+                cursor.execute("SELECT COUNT(*) FROM Logs")
+                log_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Logs WHERE Status != '成功'"
+                )
+                log_current = cursor.fetchone()[0]
+            else:
+                log_total = 0
+                log_current = 0
+            # 查询用户总数
+            if userrole == "admin":
+                cursor.execute("SELECT COUNT(*) FROM Users")
+                user_total = cursor.fetchone()[0]
+                cursor.execute(
+                    "SELECT COUNT(*) FROM Users WHERE DATE(Timestamp) = CURDATE()"
+                )
+                user_current = cursor.fetchone()[0]
+            else:
+                user_total = 0
+                user_current = 0
+            dataOverview = {
+                "KB": {"total": kb_total, "current": kb_current},
+                "Knowledge": {"total": knowledge_total, "current": knowledge_current},
+                "Conversation": {"total": conversation_total, "current": conversation_current},
+                "Model": {"total": model_total, "current": model_current},
+                "Log": {"total": log_total, "current": log_current},
+                "User": {"total": user_total, "current": user_current},
+            }
+            return {"status": 0, "dataOverview": dataOverview}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+
+    # 获取服务访问量
+    def get_views(self):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 查询服务访问量
+            # 初始化每小时日志数量列表
+            logs_count_by_hour = [0] * 24
+
+            # 执行查询每小时日志数量的 SQL 查询语句
+            cursor.execute("""
+                SELECT HOUR(Timestamp) AS HourOfDay, COUNT(*) AS LogCount
+                FROM Logs
+                WHERE DATE(Timestamp) = CURDATE()
+                GROUP BY HOUR(Timestamp)
+            """)
+            logs_by_hour = cursor.fetchall()
+
+            # 更新每小时日志数量列表
+            for hour, count in logs_by_hour:
+                logs_count_by_hour[hour] = count
+            return {"status": 0, "views": logs_count_by_hour}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
 
     """日志操作"""
     # 创建日志
@@ -209,6 +373,33 @@ class MysqlApi:
                 db_connection.close()
                 print("数据库连接已关闭。")
 
+    # 获取用户名
+    def get_username(self, userid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 查询用户名
+            cursor.execute("SELECT Username FROM Users WHERE UserID = %s", (userid))
+            username = cursor.fetchone()[0]
+            return username
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "username": None}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+
     # 获取用户
     def get_user(self, username):
         try:
@@ -247,7 +438,7 @@ class MysqlApi:
         if result[2] == password:
             return {"status": 0, "message": "登录成功！","token": {"id": result[0], "role": result[3]}}
         else:
-            return {"status": 1, "message": "用户名或密码错误！","token": None}
+            return {"status": 1, "message": "用户名或密码错误！","id": result[0]}
 
     # 删除用户
     def delete_user(self, username, password):
@@ -285,12 +476,8 @@ class MysqlApi:
                 print("数据库连接已关闭。")
 
     # 更新用户密码
-    def update_user(self, username, password, newpassword):
+    def edit_password(self, username, password, newpassword):
         try:
-            # 验证用户
-            validate = self.validate_user(username, password)
-            if validate.status == 1:
-                return {"status": 1, "message": "用户名或密码错误！","token": None}
             # 获取游标
             db_connection = pymysql.connect(
                 host=self.host,
@@ -300,19 +487,106 @@ class MysqlApi:
                 port=self.port,
             )
             cursor = db_connection.cursor()
+            # 查询用户原密码
+            cursor.execute("SELECT Password FROM Users WHERE Username = %s", (username))
+            if cursor.fetchone()[0] != password:
+                return {"status": 1, "message": "原密码错误！"}
             # 更新用户数据
             cursor.execute("UPDATE Users SET Password = %s WHERE Username = %s", (newpassword, username))
             # 提交事务
             db_connection.commit()
             print("数据更新成功！")
-            return {"status": 0, "message": "更新成功！","token": validate.token}
+            return {"status": 0, "message": "更新成功！"}
 
         except pymysql.Error as err:
             print("数据库错误：", err)
             # 回滚事务
             db_connection.rollback()
-            return {"status": err.args[0], "message": err.args[1], "token": None}
+            return {"status": err.args[0], "message": err.args[1]}
 
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 获取用户信息
+    def get_userInfo(self, userid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 查询用户数据
+            cursor.execute(
+                "SELECT Username, NickName, Age, Sex, Email, Phone, Area, Job, DATE_FORMAT(Timestamp, '%%m-%%d') FROM Users WHERE UserID = %s",
+                (userid),
+            )
+            # 获取查询结果
+            result = cursor.fetchone()
+            userinfo = {
+                "username": result[0],
+                "nickname": result[1],
+                "age": result[2],
+                "sex": result[3],
+                "email": result[4],
+                "phone": result[5],
+                "area": result[6],
+                "job": result[7],
+                "createtime": result[8],
+            }
+            return {"status": 0, "userinfo": userinfo}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "userinfo": None}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+
+    # 更新用户信息
+    def edit_userInfo(self, user):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 更新用户数据
+            cursor.execute(
+                "UPDATE Users SET Username=%s, NickName=%s, Age=%s, Sex=%s, Email=%s, Phone=%s, Area=%s, Job=%s WHERE UserID = %s",
+                (
+                    user.username,
+                    user.nickname,
+                    user.age,
+                    user.sex,
+                    user.email,
+                    user.phone,
+                    user.area,
+                    user.job,
+                    user.userid,
+                ),
+            )
+            # 提交事务
+            db_connection.commit()
+            print("数据更新成功！")
+            return {"status": 0, "message": "更新成功！"}
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "message": err.args[1]}
         finally:
             # 关闭数据库连接
             if db_connection.open:
@@ -392,7 +666,7 @@ class MysqlApi:
             print("数据库错误：", err)
             # 回滚事务
             db_connection.rollback()
-            return {"status": err.args[0], "sessions": None}
+            return {"status": err.args[0], "message":err.args[1], "sessions": None}
 
         finally:
             # 关闭数据库连接
@@ -480,9 +754,12 @@ class MysqlApi:
                 port=self.port,
             )
             cursor = db_connection.cursor()
+            # 查询用户ID
+            cursor.execute("SELECT UserID FROM Sessions WHERE SessionID = %s", (sessionid))
+            userid = cursor.fetchone()[0]
             # 插入Conversation数据
             for message in messages:
-                cursor.execute("INSERT INTO Conversations (SessionID, Message) VALUES (%s, %s)", (sessionid, message))
+                cursor.execute("INSERT INTO Conversations (SessionID, Message, UserID) VALUES (%s, %s, %s)", (sessionid, message, userid))
             # 提交事务
             db_connection.commit()
             print("对话插入成功！")
@@ -527,6 +804,7 @@ class MysqlApi:
             print("数据库错误：", err)
             # 回滚事务
             db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
 
         finally:
             # 关闭数据库连接
@@ -633,6 +911,11 @@ class MysqlApi:
                 port=self.port,
             )
             cursor = db_connection.cursor()
+            # 获取知识库名字
+            cursor.execute(
+                "SELECT KBName FROM KnowledgeBases WHERE Indices = %s", (indices)
+            )
+            kbname = cursor.fetchone()[0]
             # 删除知识库数据
             cursor.execute(
                 "Delete FROM Knowledge WHERE Indices = %s", (indices)
@@ -645,7 +928,7 @@ class MysqlApi:
             )
             db_connection.commit()
             print("知识库删除成功！")
-            return {"status": 0, "message": "删除成功！"}
+            return {"status": 0, "message": "删除成功！", "kbname": kbname}
 
         except pymysql.Error as err:
             print("数据库错误：", err)
@@ -866,6 +1149,9 @@ class MysqlApi:
                 port=self.port,
             )
             cursor = db_connection.cursor()
+            # 获取知识标题
+            cursor.execute("SELECT Title FROM Knowledge WHERE KnowledgeID = %s", (knowledgeid))
+            title = cursor.fetchone()[0]
             # 删除知识数据
             cursor.execute("DELETE FROM Knowledge WHERE KnowledgeID = %s", (knowledgeid))
             db_connection.commit()
@@ -884,7 +1170,7 @@ class MysqlApi:
             # 提交事务
             db_connection.commit()
             print("知识删除成功！")
-            return {"status": 0, "message": "知识删除成功！"}
+            return {"status": 0, "message": "知识删除成功！", "title": title}
 
         except pymysql.Error as err:
             print("数据库错误：", err)
@@ -1118,6 +1404,32 @@ class MysqlApi:
             print("数据库错误：", err)
             db_connection.rollback()
             return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 获取模型名称
+    def get_modelname(self, modelid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port,
+            )
+            cursor = db_connection.cursor()
+            cursor.execute("SELECT ModelName FROM Models WHERE ModelID = %s", (modelid))
+            result = cursor.fetchone()
+            return result[0]
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            db_connection.rollback()
 
         finally:
             if db_connection.open:
