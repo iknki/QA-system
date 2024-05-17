@@ -25,25 +25,27 @@ export const knowledgebaseCreateKBService = ({userId, kbname, info}) => {
 }
 
 // 编辑知识库
-export const knowledgebaseEditKBService = ({kbId, kbname, info}) => {
+export const knowledgebaseEditKBService = ({kbId, kbname, info, userId}) => {
     return request({
         url: '/api/knowledgebase/EditKB',
         method: 'post',
         data: {
             kbId:kbId,
             kbname:kbname,
-            info:info
+            info:info,
+            userId:userId
         },
     })
 }
 
 // 删除知识库
-export const knowledgebaseDeleteKBService = ({indices}) => {
+export const knowledgebaseDeleteKBService = ({indices, userId}) => {
     return request({
         url: '/api/knowledgebase/DeleteKB',
         method: 'get',
         params: {
-            indices:indices
+            indices:indices,
+            userId:userId
         },
     })
 }

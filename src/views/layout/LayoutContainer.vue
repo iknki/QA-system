@@ -2,8 +2,20 @@
 import {ref} from "vue";
 import ChatAside from "@/views/chat/ChatAside.vue";
 import router from "@/router/index.js";
+import {useUserStore} from "@/stores/index.js";
 
 
+const userStore = useUserStore()
+
+const logout = async () => {
+  await ElMessageBox.confirm('你是否要退出', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  });
+  userStore.logout()
+  router.push('/login')
+}
 
 </script>
 
@@ -26,7 +38,24 @@ import router from "@/router/index.js";
             <h3 style="font-size: large">后台管理</h3>
           </el-menu-item>
           <el-menu-item index="/user" style="float: right">
-            <h3 style="font-size: large">个人中心</h3>
+            <el-sub-menu>
+              <template #title>
+                <h3 style="font-size: large" v-if="!userStore.token.username">个人中心</h3>
+                <div v-else style="display: flex">
+                  <el-avatar src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg" style="margin-top: 10px;margin-right: 3px"/>
+                  <el-text style="font-size: large" type="primary"> hi! {{ userStore.token.username }}</el-text>>
+                </div>
+              </template>
+              <el-menu-item index="/user/info">
+                <span style="font-size: large">个人信息</span>
+              </el-menu-item>
+              <el-menu-item index="/user/editPassword">
+                <span style="font-size: large">重置密码</span>
+              </el-menu-item>
+              <el-menu-item @click="logout">
+                <span style="font-size: large">退出登录</span>
+              </el-menu-item>
+            </el-sub-menu>
           </el-menu-item>
         </el-menu>
       </el-header>

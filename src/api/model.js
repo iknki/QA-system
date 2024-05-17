@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 import { ref } from 'vue'
 
-// 获取知识列表
+// 获取模型列表
 export const modelGetModelListService = ({userid}) => {
     return request({
         url: '/api/model/GetModelList',
@@ -12,7 +12,7 @@ export const modelGetModelListService = ({userid}) => {
     })
 }
 
-// 添加知识
+// 添加模型
 export const modelCreateModelService = ({model, knowledgeIDList, userid}) => {
     return request({
         url: '/api/model/CreateModel',
@@ -27,7 +27,7 @@ export const modelCreateModelService = ({model, knowledgeIDList, userid}) => {
     })
 }
 
-// 编辑知识
+// 编辑模型
 export const modelEditModelService = ({model, userid}) => {
     return request({
         url: '/api/model/EditModel',
@@ -42,7 +42,7 @@ export const modelEditModelService = ({model, userid}) => {
     })
 }
 
-// 删除知识
+// 删除模型
 export const modelDeleteModelService = ({modelid, userid}) => {
     return request({
         url: '/api/model/DeleteModel',
@@ -51,5 +51,19 @@ export const modelDeleteModelService = ({modelid, userid}) => {
             modelid:modelid,
             userid: userid,
         },
+    })
+}
+
+// 删除模型
+export const modelTestModelService = ({params, userid}) => {
+    return request({
+        url: '/api/model/TestModel',
+        method: 'get',
+        params: {
+            modelid:params.modelid,
+            question:params.question,
+            userid: userid,
+        },
+        timeout: 60000 //防止回答时间过长导致超时
     })
 }

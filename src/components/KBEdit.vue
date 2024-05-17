@@ -39,7 +39,8 @@ const onSubmit = async () => {
     const response = await knowledgebaseEditKBService({
       kbId: formModel.value.kbid,
       kbname: formModel.value.kbname,
-      info: formModel.value.info
+      info: formModel.value.info,
+      userId: userStore.token.id
     })
     ElMessage.success(response.message)
     isloading.value = false

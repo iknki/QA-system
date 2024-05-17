@@ -2,15 +2,14 @@ import axios from "axios"
 import { useUserStore } from '@/stores'
 import { ElMessage } from 'element-plus'
 import router from '@/router'
+import { baseURL } from "@/main.js";
 
-//const baseURL = 'http://localhost:8000'
-const baseURL = 'http://20.24.81.64:8000'
-//const baseURL = 'https://8xrhkvwc-8000.asse.devtunnels.ms/'
+
 
 const instance = axios.create({
     // 基地址，超时时间
-    baseURL,
-    timeout:30000
+    baseURL: baseURL.value,
+    timeout: 30000
 })
 
 // 请求拦截器

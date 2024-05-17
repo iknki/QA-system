@@ -26,7 +26,7 @@ export const knowledgeCreateKnowledgeService = ({Knowledge, userid}) => {
 }
 
 // 编辑知识
-export const knowledgeEditKnowledgeService = ({Knowledge}) => {
+export const knowledgeEditKnowledgeService = ({Knowledge, userid}) => {
     return request({
         url: '/api/knowledge/EditKnowledge',
         method: 'post',
@@ -35,17 +35,19 @@ export const knowledgeEditKnowledgeService = ({Knowledge}) => {
             title: Knowledge.title,
             info: Knowledge.info,
             istrain: Knowledge.istrain,
+            userid: userid,
         },
     })
 }
 
 // 删除知识
-export const knowledgebaseDeleteKBService = ({knowledgeid}) => {
+export const knowledgebaseDeleteKBService = ({knowledgeid, userid}) => {
     return request({
         url: '/api/knowledge/DeleteKnowledge',
         method: 'get',
         params: {
             knowledgeid:knowledgeid,
+            userid:userid
         },
     })
 }

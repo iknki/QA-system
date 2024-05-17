@@ -1,11 +1,14 @@
 <script setup>
 
-import {ref, watch} from "vue";
-import {userLoginService, userRegisterService} from "@/api/user";
+import {ref, watch, onMounted} from "vue";
+import {userEditPasswordService, userLoginService, userRegisterService} from "@/api/user";
 import {useUserStore} from "@/stores/index.js";
 import {useRouter} from "vue-router";
+import backround from '@/assets/backround.jpg'
+
 
 const isRegister = ref(false);
+const isEdit = ref(false);
 const form = ref(null)
 const userStore = useUserStore()
 const router = useRouter()
@@ -13,7 +16,8 @@ const router = useRouter()
 const formModel = ref({
   username: '',
   password: '',
-  rePassword: ''
+  rePassword: '',
+  newpassword: ''
 });
 
 
@@ -27,7 +31,14 @@ watch(isRegister,() => {
     rePassword: ''
   }
 })
-
+watch(isEdit,() => {
+  formModel.value = {
+    username: '',
+    password: '',
+    rePassword: '',
+    newpassword: '',
+  }
+})
 
 
 const checkRePassword = (rule, value, callback) => {
@@ -70,6 +81,10 @@ const login = async () => {
   await form.value.validate(async (valid) => {
     if (valid) {
       console.log('登陆处理中')
+      if(userStore.checked){
+        console.log('记住密码')
+        userStore.setRemember(formModel.value)
+      }
       const response = await userLoginService(formModel.value);
       console.log(response)
       userStore.setToken(response.token)
@@ -80,15 +95,40 @@ const login = async () => {
   })
 }
 
+const update = async () => {
+  try {
+    await form.value.validate()
+    console.log('更新密码')
+    const response = await userEditPasswordService({
+      oldpassword: formModel.value.password,
+      newpassword: formModel.value.newpassword,
+      username: formModel.value.username
+    })
+    ElMessage.success(response.message)
+    isEdit.value = false
+  } catch (error) {
+    console.log('error', error)
+  }
+}
 
+onMounted(() => {
+  if(userStore.checked){
+    console.log(userStore.username)
+    formModel.value = {
+      username: userStore.username,
+      password: userStore.password,
+      rePassword: ''
+    }
+  }
+})
 
 </script>
 
 <template>
   <el-row class="login-page">
     <el-col :span="8">
-      <!--   注册表单   -->
-      <el-card>
+      <el-card v-if="!isEdit">
+        <!--   注册表单   -->
         <el-form ref="form" size="large" autocomplete="on" v-if="isRegister" :model="formModel" :rules="rules">
           <el-form-item>
             <h1 style="margin: 0 auto">注册</h1>
@@ -144,8 +184,8 @@ const login = async () => {
           </el-form-item>
           <el-form-item>
             <div class="flex">
-              <el-checkbox>记住我</el-checkbox>
-              <el-link type="primary" :underline="false">忘记密码？</el-link>
+              <el-checkbox v-model="userStore.checked">记住我</el-checkbox>
+              <el-link type="primary" :underline="false" @click="isEdit = true">修改密码</el-link>
             </div>
           </el-form-item>
           <el-form-item>
@@ -154,6 +194,43 @@ const login = async () => {
           <el-form-item>
             <el-link type="info" :underline="false" @click="isRegister = true">
               去注册 →
+            </el-link>
+          </el-form-item>
+        </el-form>
+      </el-card>
+      <el-card v-else>
+        <!--   修改密码表单   -->
+        <el-form ref="form" size="large" autocomplete="on" v-if="isEdit" :model="formModel" :rules="rules">
+          <el-form-item>
+            <h1 style="margin: 0 auto">修改密码</h1>
+          </el-form-item>
+          <el-form-item prop="username">
+          <el-input v-model="formModel.username" placeholder="请输入用户名">
+            <template #prefix>
+              <i-ep-User style="float:left"></i-ep-User>
+            </template>
+          </el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input v-model="formModel.password" type="password" placeholder="请输入密码">
+              <template #prefix>
+                <i-ep-Lock style="float:left"></i-ep-Lock>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="newpassword">
+            <el-input v-model="formModel.newpassword" type="password" placeholder="请输入新密码">
+              <template #prefix>
+                <i-ep-Lock style="float:left"></i-ep-Lock>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" round auto-insert-space @click="update">更新密码</el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-link type="info" :underline="false" @click="isEdit = false">
+              返回登陆 →
             </el-link>
           </el-form-item>
         </el-form>
@@ -169,6 +246,8 @@ const login = async () => {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("@/assets/backround.jpg") no-repeat center center;
+  background-size: cover;
 }
 
 .el-button {

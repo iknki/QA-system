@@ -72,7 +72,7 @@ const onDeleteKnowledge = async (row) => {
   });
   try {
     console.log('onDeleteKB')
-    const response = await knowledgebaseDeleteKBService({knowledgeid: row.knowledgeid});
+    const response = await knowledgebaseDeleteKBService({knowledgeid: row.knowledgeid, userid: userStore.token.id});
     ElMessage.success(response.message)
     console.log('Success Delete Knowledge')
     getKnowledgeList();
@@ -139,8 +139,8 @@ const onSuccess = () => {
         <el-table-column label="创建/修改时间" prop="timestamp" align="center"></el-table-column>
         <el-table-column label="状态" prop="istrain" align="center">
           <template #default="{row}">
-            <span v-if="row.istrain==='true'" :style="{ color: 'blue'}">已训练</span>
-            <span v-else :style="{ color: 'gray'}">未训练</span>
+            <el-tag v-if="row.istrain==='true'" type="success">已训练</el-tag>
+            <el-tag v-else type="danger">未训练</el-tag>
           </template>
         </el-table-column>
         <el-table-column label="操作" width="100px" align="center">

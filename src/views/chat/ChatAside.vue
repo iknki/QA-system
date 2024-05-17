@@ -23,11 +23,11 @@ const handleSelectSession = (sessionid) => {
 
 const handleCreateSession = async () => {
   isbutton.value = false
+  isCollapse.value = false
 }
 
 const CreatNewSession = async () => {
   console.log('CreatNewSession')
-
   const response = await sessionCreateSessionService({
     userId: userStore.token.id,
     sessionname: NewSessionName.value
@@ -40,8 +40,14 @@ const CreatNewSession = async () => {
 
 const DeleteSession = async (sessionid) => {
   console.log('DeleteSession')
+  await ElMessageBox.confirm('此操作将永久删除该会话历史记录, 是否继续?', '温馨提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning'
+  });
   const response = await sessionDeleteSessionService({
-    sessionId: sessionid
+    sessionId: sessionid,
+    userId: userStore.token.id
   });
   console.log('DeleteSession Success')
   ElMessage.success(response ? response.message : '删除成功')
@@ -103,7 +109,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <el-aside width="240px" class="session-panel">
+  <el-aside width="isCollapse" class="session-panel">
     <el-menu
         :default-active="''+active"
         class="el-menu-vertical-demo"
@@ -116,10 +122,8 @@ onBeforeUnmount(() => {
                     v-for="session in sessions"
                     :index="''+session.sessionid"
                     @click="handleSelectSession(session.sessionid)"
+                    v-if="!isCollapse"
       >
-        <el-icon>
-          <icon-menu/>
-        </el-icon>
         <template #title>
           <div class="mask"></div>
           <h1 class="name">{{ session.sessionname }}</h1>
@@ -129,16 +133,12 @@ onBeforeUnmount(() => {
         </template>
         <div class="btn-wrapper">
           <el-icon :size="30" class="close" @click="DeleteSession(session.sessionid)">
-            <el-popconfirm title="是否确认永久删除该聊天会话？">
-              <template #reference>
-                <CircleClose/>
-              </template>
-            </el-popconfirm>
+            <CircleClose/>
           </el-icon>
         </div>
       </el-menu-item>
       <!--  新建会话按钮-->
-      <div style="margin-top: 20px">
+      <div style="margin-top: 20px" v-if="!isCollapse">
         <el-button type="primary"
                    round class="createsession-button"
                    v-if="isbutton"
@@ -165,6 +165,23 @@ onBeforeUnmount(() => {
           </el-button>
 
         </div>
+      </div>
+      <!--  收缩侧边栏 -->
+      <div
+          style="display: flex; flex-direction: column; justify-content: center; align-items: center;width:100%"
+          v-if="isCollapse"
+      >
+        <i-ep-Comment style="margin-top: 10vh; margin-bottom: 40px; font-size: 40px; color: #5274F3"/>
+        <el-button style="border: none; padding: 0" type="primary" circle @click="handleCreateSession">
+          <el-tooltip
+              placement="bottom"
+              content="新建会话"
+              trigger="hover"
+              :width="10"
+          >
+            <i-ep-plus style="color: #5274F3; font-size: 20px"/>
+          </el-tooltip>
+        </el-button>
       </div>
     </el-menu>
   </el-aside>
@@ -326,7 +343,7 @@ onBeforeUnmount(() => {
 
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 100%;
+  width: 240px;
   padding-left: 10px;
   margin: 0;
 }

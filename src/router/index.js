@@ -9,10 +9,10 @@ const router = createRouter({
         {
             path: '/',
             component:() => import('@/views/layout/LayoutContainer.vue'),
-            redirect: '/chat',
+            redirect: '/index',
             children: [
                 {
-                    path: 'index',
+                    path: '/index',
                     component: () => import('@/views/index/IndexPage.vue'),
                 },
                 {
@@ -59,6 +59,10 @@ const router = createRouter({
                             ]
                         },
                         {
+                            path: '/backendmanage/usermanage',
+                            component: () => import('@/views/backendmanage/UserManage.vue')
+                        },
+                        {
                             path: '/backendmanage/logs',
                             component: () => import('@/views/backendmanage/Logs.vue')
                         },
@@ -70,7 +74,22 @@ const router = createRouter({
                 },
                 {
                     path: '/user',
-                    component: () => import('@/views/user/Info.vue')
+                    component: () => import('@/views/user/Personal.vue'),
+                    redirect: '/user/info',
+                    children: [
+                        {
+                            path: '/user/info',
+                            component: () => import('@/views/user/Info.vue')
+                        },
+                        {
+                            path: '/user/editPassword',
+                            component: () => import('@/views/user/Editpassword.vue')
+                        },
+                        {
+                            path: '/user/editAvatar',
+                            component: () => import('@/views/user/EditAvatar.vue')
+                        }
+                    ]
                 },
             ]
         },

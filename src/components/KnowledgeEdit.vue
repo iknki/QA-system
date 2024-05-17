@@ -58,6 +58,7 @@ const onSubmit = async () => {
     console.log('编辑知识')
     const response = await knowledgeEditKnowledgeService({
       Knowledge: formModel.value,
+      userid: userStore.token.id,
     })
     ElMessage.success(response.message)
     isloading.value = false

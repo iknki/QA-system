@@ -24,12 +24,13 @@ export const sessionCreateSessionService = ({userId, sessionname}) => {
 }
 
 // 删除Session
-export const sessionDeleteSessionService = ({sessionId}) => {
+export const sessionDeleteSessionService = ({sessionId, userId}) => {
     return request({
         url: '/api/session/DeleteSession',
         method: 'post',
         data: {
-            sessionId:sessionId
+            sessionId:sessionId,
+            userId:userId
         },
     })
 }

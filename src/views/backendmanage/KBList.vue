@@ -21,7 +21,7 @@ const onDeleteKB = async (row) => {
   });
   try {
     console.log('onDeleteKB')
-    const response = await knowledgebaseDeleteKBService({indices: row.indices});
+    const response = await knowledgebaseDeleteKBService({indices: row.indices, userId: userStore.token.id});
     ElMessage.success(response.message)
     console.log('Success Delete KB')
     getKBList();

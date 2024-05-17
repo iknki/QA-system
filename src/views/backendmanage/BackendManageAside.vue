@@ -1,6 +1,10 @@
 <script setup>
 
 
+import {useUserStore} from "@/stores/index.js";
+
+const userStore = useUserStore()
+
 </script>
 
 <template>
@@ -11,41 +15,45 @@
         background-color="transparent"
         router
     >
-      <h1 class="title" v-if="!isCollapse">知识库管理</h1>
+      <h1 class="title" v-if="!isCollapse">后台管理</h1>
       <el-sub-menu index="/backendmanage/kbmanage">
         <template #title>
-          <el-icon><i-ep-document /></el-icon>
+          <el-icon><i-ep-Files /></el-icon>
           <span class="menu-title">知识库管理</span>
         </template>
         <el-menu-item index="/backendmanage/kbmanage/kblist">
-          <el-icon><i-ep-document /></el-icon>
+          <el-icon><i-ep-FolderOpened /></el-icon>
           <span class="menu-item">知识库列表</span>
         </el-menu-item>
         <el-menu-item index="/backendmanage/kbmanage/knowledgelist">
-          <el-icon><i-ep-document /></el-icon>
+          <el-icon><i-ep-Memo /></el-icon>
           <span class="menu-item">知识管理</span>
         </el-menu-item>
       </el-sub-menu>
-      <el-sub-menu index="/backendmanage/model">
+      <el-sub-menu index="/backendmanage/model" v-if="userStore.token.role === 'admin'">
         <template #title>
-          <el-icon><i-ep-document /></el-icon>
+          <el-icon><i-ep-Menu /></el-icon>
           <span class="menu-title">问题推荐模型</span>
         </template>
         <el-menu-item index="/backendmanage/model/test">
-          <el-icon><i-ep-document /></el-icon>
+          <el-icon><i-ep-Tools /></el-icon>
           <span class="menu-item">模型测试</span>
         </el-menu-item>
         <el-menu-item index="/backendmanage/model/train">
-          <el-icon><i-ep-document /></el-icon>
+          <el-icon><i-ep-Monitor /></el-icon>
           <span class="menu-item">模型训练</span>
         </el-menu-item>
       </el-sub-menu>
-      <el-menu-item index="/backendmanage/logs">
-        <el-icon><i-ep-document/></el-icon>
+      <el-menu-item index="/backendmanage/usermanage" v-if="userStore.token.role === 'admin'">
+        <el-icon><i-ep-management/></el-icon>
+        <span class="menu-title">用户管理</span>
+      </el-menu-item>
+      <el-menu-item index="/backendmanage/logs" v-if="userStore.token.role === 'admin'">
+        <el-icon><i-ep-Tickets/></el-icon>
         <span class="menu-title">日志管理</span>
       </el-menu-item>
-      <el-menu-item index="/backendmanage/settings">
-        <el-icon><i-ep-document/></el-icon>
+      <el-menu-item index="/backendmanage/settings" v-if="userStore.token.role === 'admin'">
+        <el-icon><i-ep-Setting/></el-icon>
         <span class="menu-title">系统设置</span>
       </el-menu-item>
     </el-menu>
