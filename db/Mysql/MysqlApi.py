@@ -228,7 +228,7 @@ class MysqlApi:
             )
             cursor = db_connection.cursor()
             # 查询用户名
-            cursor.execute("SELECT UserName FROM Users WHERE UserID = %s", (userid))
+            cursor.execute("SELECT Username FROM Users WHERE UserID = %s", (userid))
             username = cursor.fetchone()[0]
 
             # 插入日志数据
@@ -338,7 +338,7 @@ class MysqlApi:
 
     """用户操作"""
     # 创建用户
-    def create_user(self, username, password):
+    def create_user(self, username, password, role='user'):
         try:
             # 获取游标
             db_connection = pymysql.connect(
@@ -350,8 +350,8 @@ class MysqlApi:
             )
             cursor = db_connection.cursor()
             # 插入用户数据
-            cursor.execute("INSERT INTO Users (Username, Password) VALUES (%s, %s)",
-                   (username, password))
+            cursor.execute("INSERT INTO Users (Username, Password, UserRole) VALUES (%s, %s, %s)",
+                   (username, password, role))
             # 提交事务
             db_connection.commit()
             # 获取token
@@ -400,6 +400,33 @@ class MysqlApi:
                 cursor.close()
                 db_connection.close()
 
+    # 获取用户ID
+    def get_userid(self, username):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 查询用户ID
+            cursor.execute("SELECT UserID FROM Users WHERE Username = %s", (username))
+            userid = cursor.fetchone()[0]
+            return userid
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "userid": None}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+
     # 获取用户
     def get_user(self, username):
         try:
@@ -436,7 +463,7 @@ class MysqlApi:
         if result is None:
             return {"status": 1, "message": "用户不存在！","token": None}
         if result[2] == password:
-            return {"status": 0, "message": "登录成功！","token": {"id": result[0], "role": result[3]}}
+            return {"status": 0, "message": "登录成功！","token": {"id": result[0], "role": result[3], "username": username}}
         else:
             return {"status": 1, "message": "用户名或密码错误！","id": result[0]}
 
@@ -511,6 +538,144 @@ class MysqlApi:
                 db_connection.close()
                 print("数据库连接已关闭。")
 
+    # 获取用户列表
+    def get_userList(self, pagenum, pagesize):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 查询用户数据
+            cursor.execute("SELECT COUNT(*) AS total_count FROM Users",)
+            total_count = cursor.fetchone()[0]
+            cursor.execute(
+                "SELECT UserID, Username, Password, UserRole, DATE_FORMAT(Timestamp, '%%Y-%%m-%%d %%H:%%i:%%S') FROM Users ORDER BY Timestamp DESC LIMIT %s, %s",
+                ((pagenum - 1) * pagesize, pagesize),
+            )
+            # 获取查询结果
+            userlist = []
+            results = cursor.fetchall()
+            for result in results:
+                userlist.append(
+                    {
+                        "userid": result[0],
+                        "username": result[1],
+                        "password": result[2],
+                        "role": result[3],
+                        "timestamp": result[4],
+                    }
+                )
+            return {"status": 0, "users": userlist, "total": total_count}
+        
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "userlist": None}
+        
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 新增用户
+    def add_user(self, username, password, role):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 插入用户数据
+            cursor.execute("INSERT INTO Users (Username, Password, UserRole) VALUES (%s, %s, %s)",
+                   (username, password, role))
+            # 提交事务
+            db_connection.commit()
+            print("数据插入成功！")
+            return {"status": 0, "message": "新增成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            # 回滚事务
+            db_connection.rollback()
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+                print("数据库连接已关闭。")
+
+    # 删除用户
+    def delete_user(self, userid):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 删除用户数据
+            cursor.execute("DELETE FROM Users WHERE UserID = %s", (userid))
+            # 提交事务
+            db_connection.commit()
+            print("数据删除成功！")
+            return {"status": 0, "message": "删除成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+
+    # 更新用户信息
+    def edit_user(self, userid, username, password, role):
+        try:
+            # 获取游标
+            db_connection = pymysql.connect(
+                host=self.host,
+                user=self.user,
+                password=self.password,
+                database=self.database,
+                port=self.port
+            )
+            cursor = db_connection.cursor()
+            # 更新用户数据
+            cursor.execute("UPDATE Users SET Username = %s, Password = %s, UserRole = %s WHERE UserID = %s",
+                   (username, password, role, userid))
+            # 提交事务
+            db_connection.commit()
+            print("数据更新成功！")
+            return {"status": 0, "message": "更新成功！"}
+
+        except pymysql.Error as err:
+            print("数据库错误：", err)
+            return {"status": err.args[0], "message": err.args[1]}
+
+        finally:
+            # 关闭数据库连接
+            if db_connection.open:
+                cursor.close()
+                db_connection.close()
+
     # 获取用户信息
     def get_userInfo(self, userid):
         try:
@@ -525,7 +690,7 @@ class MysqlApi:
             cursor = db_connection.cursor()
             # 查询用户数据
             cursor.execute(
-                "SELECT Username, NickName, Age, Sex, Email, Phone, Area, Job, DATE_FORMAT(Timestamp, '%%m-%%d') FROM Users WHERE UserID = %s",
+                "SELECT Username, NickName, Age, Sex, Email, Phone, Area, Job, DATE_FORMAT(Timestamp, '%%Y-%%m-%%d') FROM Users WHERE UserID = %s",
                 (userid),
             )
             # 获取查询结果
@@ -539,7 +704,7 @@ class MysqlApi:
                 "phone": result[5],
                 "area": result[6],
                 "job": result[7],
-                "createtime": result[8],
+                "timestamp": result[8],
             }
             return {"status": 0, "userinfo": userinfo}
 

@@ -4,11 +4,11 @@ es:
   port: 9200
   user: elastic
 llm:
-  Spark_url: ws(s)://spark-api.xf-yun.com/v3.5/chat
+  Spark_url: wss://spark-api.xf-yun.com/v3.5/chat
   api_key: 3df6675e31e2480676984973fb4965db
   api_secret: ZTNkZjBkMmQwNzY0ZDVlNjkxZjBhNjY4
   appid: 508af837
-  domain: generalV3.5
+  domain: generalv3.5
 mysql:
   database: QADB
   host: localhost
@@ -19,4 +19,4 @@ recommendModel:
   base_path: ./RecommendModel/Models/
   model_id: 2
   model_name: modelv2
-test: test1
+test: test2

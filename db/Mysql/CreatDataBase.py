@@ -112,7 +112,6 @@ def create_tables(cursor):
             LogContent TEXT NOT NULL,
             Status TEXT NOT NULL,
             Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (UserID) REFERENCES Users(UserID)
         )
     """
     )

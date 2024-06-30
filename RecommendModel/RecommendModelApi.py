@@ -84,6 +84,7 @@ class RecommendModelApi:
             clusters = kmeans.labels_
 
             # 将聚类结果添加到数据集中
+            df = pd.DataFrame(questions, columns=["title"])
             df["cluster"] = clusters
 
             # 保存训练好的数据

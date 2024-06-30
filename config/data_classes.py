@@ -26,6 +26,8 @@ class Message(BaseModel):
 class User(BaseModel):
     Username: str
     Password: str
+    UserID: Optional[int] = None
+    Role: Optional[str] = None
 
 class ChatResponse(BaseModel):
     status: int

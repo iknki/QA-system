@@ -124,12 +124,12 @@ async def register(UserRegistration: User):
 
 # 修改密码接口
 @app.get("/api/user/EditPassword")
-async def user_edit_password(userid: int, oldpassword: str, newpassword: str):
-    username = mysql.get_username(userid)
+async def user_edit_password(username: str, oldpassword: str, newpassword: str):
+    userid = mysql.get_userid(username)
     response = mysql.edit_password(username, oldpassword, newpassword)
     if response["status"] == 0:
         mysql.create_log(
-            username,
+            userid,
             "修改密码",
             "成功",
         )
@@ -141,6 +141,65 @@ async def user_edit_password(userid: int, oldpassword: str, newpassword: str):
         )
     return response
 
+# 获取用户列表接口
+@app.get("/api/user/GetUserList")
+async def user_get_userlist(pagenum: int, pagesize: int):
+    response = mysql.get_userList(pagenum, pagesize)
+    return response
+
+# 新增用户接口
+@app.post("/api/user/CreateUser")
+async def user_create_user(user: User):
+    response = mysql.add_user(user.Username, user.Password, user.Role)
+    if response["status"] == 0:
+        mysql.create_log(
+            1,
+            "创建用户 {" + user.Username + "}",
+            "成功",
+        )
+    else:
+        mysql.create_log(
+            1,
+            "创建用户 {" + user.Username + "}",
+            "操作失败，" + "原因：" + response["message"],
+        )
+    return response
+
+# 删除用户接口
+@app.get("/api/user/DeleteUser")
+async def user_delete_user(userid: int):
+    response = mysql.delete_user(userid)
+    if response["status"] == 0:
+        mysql.create_log(
+            1,
+            "删除用户 {" + str(userid) + "}",
+            "成功",
+        )
+    else:
+        mysql.create_log(
+            1,
+            "删除用户 {" + str(userid) + "}",
+            "操作失败，" + "原因：" + response["message"],
+        )
+    return response
+
+# 编辑用户信息接口
+@app.post("/api/user/EditUser")
+async def user_edit_user(user: User):
+    response = mysql.edit_user(user.UserID, user.Username, user.Password, user.Role)
+    if response["status"] == 0:
+        mysql.create_log(
+            1,
+            "编辑用户 {" + str(user.Username) + "}",
+            "成功",
+        )
+    else:
+        mysql.create_log(
+            1,
+            "编辑用户 {" + str(user.Username) + "}",
+            "操作失败，" + "原因：" + response["message"],
+        )
+    return response
 
 # 获取用户信息接口
 @app.get("/api/user/GetUserInfo")

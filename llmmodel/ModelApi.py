@@ -21,6 +21,9 @@ import openpyxl
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import os
 
+from sparkai.llm.llm import ChatSparkLLM, ChunkPrintHandler
+from sparkai.core.messages import ChatMessage
+
 Message = ""
 
 
@@ -148,6 +151,16 @@ def main(appid, api_secret, api_key, gpt_url, domain, query):
     ws.query = query
     ws.domain = domain
     ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
+    # spark = ChatSparkLLM(
+    #     spark_api_url=gpt_url,
+    #     spark_app_id=appid,
+    #     spark_api_key=api_key,
+    #     spark_api_secret=api_secret,
+    #     spark_llm_domain=domain,
+    #     streaming=False,
+    # )
+    # handler = ChunkPrintHandler()
+    # Message = spark.generate([query], callbacks=[handler])
     return Message
 
 

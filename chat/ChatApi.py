@@ -1,6 +1,7 @@
 from llmmodel import ModelApi as ModelApi
 from llmmodel.Prompt import Prompt
 from db.ES.ESApi import ESApi
+from sparkai.core.messages import ChatMessage
 import random
 
 # 以下密钥信息从控制台获取
@@ -32,19 +33,23 @@ class ChatApi:
         prompt = prompt.replace("{0}", str(knowledge))
         print(prompt)
         query = [
-            {"role": "system", "content": prompt},
+            #{"role": "system", "content": prompt},
             {"role": "user", "content": question}
         ]
+        # query = [
+        #     ChatMessage(role="system", content=prompt),
+        #     ChatMessage(role="user", content=question),
+        # ]
 
         message = self.query(query)
         return message
-    
+
     def get_rephrase_question(self, question):
         prompt = Prompt().get_prompt('rephrase')
         prompt = prompt.replace("{0}", question)
         query = [
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": question}
+            ChatMessage(role="system", content=prompt),
+            ChatMessage(role="user", content=question)
         ]
         message = self.query(query)
         return message

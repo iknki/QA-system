@@ -36,7 +36,7 @@ class ESApi(object):
 
     # 创建索引，并插入mysql
     def create_index_mysql(self, kbname, info, userid):
-        mysql = MysqlApi()
+        mysql = MysqlApi("localhost", "root", "123456", "QADB", 3306)
         response = mysql.create_indices(kbname=kbname, info=info, userid=userid)
         index_name = response["kblist"]["indices"]
         self.create_index(index_name)
